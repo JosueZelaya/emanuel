@@ -13,9 +13,9 @@ abstract class conexion {
 	}
 	
 	public static function consulta($sql_consulta){
-		$respuesta = pg_query(conectar(), $sql_consulta) or die("No se pudo ejecutar la consulta:".$sql_consulta."\n"); 
+		$respuesta = pg_exec(conexion::conectar(), $sql_consulta) or die("No se pudo ejecutar la consulta:".$sql_consulta."\n"); 
 		$array = pg_fetch_array($respuesta);
-		desconectar();
+		//desconectar();
 		return $array;
 	}
 	

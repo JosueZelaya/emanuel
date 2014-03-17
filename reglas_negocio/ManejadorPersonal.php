@@ -1,15 +1,21 @@
 <?php
 
+require_once '../acceso_datos/conexion.php';
+require_once 'Usuario.php';
+
 abstract class ManejadorPersonal{
 	
 	public static function getUsuario($login){
-		if (ereg("[^A-Za-z0-9]+",$login) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES
-			throw new Error("¡Login Inválido!");	
+		if (ereg("[^A-Za-z0-9]+",$login)) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES
+			throw new Exception("¡Login Inválido!");	
 		} 
 		else{
-		 	$sql_consulta = "SELECT * FROM usuarios WHERE LOGIN="$login;
+		 	$sql_consulta = "SELECT * FROM usuarios WHERE LOGIN='".$login."'";
 			$respueta = conexion::consulta($sql_consulta);
-			$usuario = new Usuario($respueta['login'],$respuesta['password'],$respuesta['habilitado']);
+			$usuario = new Usuario();
+			$usuario->setlogin("admin");
+			$usuario->setPassword("password");
+			$usuario->setHabilitado("1");
 			return $usuario;
 		}		
 	}

@@ -1,22 +1,22 @@
 <?php
 
-public class Usuario{
+class Usuario{
 	
 	private $login;
 	private $password;
 	private $habilitado;
 	
-	public __construct($login,$password,$habilitado){
-		$this->login = $login;
-		$this->password = $password;
-		$this->habilitado = $habilitado;
+	public function Usuario(){
+		$this->login = "";
+		$this->password = "";
+		$this->habilitado = "";
 	}
 	
 	public function comprobarPassword($password){
 		if($this->password == $password){
 			return TRUE;
 		}else{
-			return FALSE;
+			throw new Exception("Usuario y password no coinciden!");
 		}
 	}
 	
@@ -38,6 +38,30 @@ public class Usuario{
 	
 	public function destruir(){
 		
+	}
+	
+	public function getLogin(){
+		return $this->login;
+	}
+	
+	public function getPassword(){
+		return $this->password;
+	}
+	
+	public function estaHabilitado(){
+		return $this->habilitado;
+	}
+	
+	public function setLogin($login){
+		$this->login = $login;
+	}
+	
+	public function setPassword($password){
+		$this->password = $password;
+	}
+	
+	public function setHabilitado($habilitado){
+		$this->habilitado = $habilitado;
 	}
 	
 }
