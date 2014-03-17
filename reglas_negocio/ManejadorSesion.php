@@ -6,8 +6,6 @@ require_once 'Usuario.php';
 abstract class ManejadorSesion{
 	
 	public static function iniciarSesion($login,$password){
-		
-		$usuario = new Usuario();
 		$usuario = ManejadorPersonal::getUsuario($login);
 		if($usuario->comprobarPassword($password)){
 			return $usuario;
@@ -21,5 +19,3 @@ abstract class ManejadorSesion{
 	}
 	
 }
-
-?>

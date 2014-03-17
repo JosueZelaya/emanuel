@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Persona.php';
+
 class Miembro extends Persona{
 	
 	private $fechaNuevoNacimiento;

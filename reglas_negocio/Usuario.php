@@ -1,6 +1,7 @@
 <?php
+require_once 'Miembro.php';
 
-class Usuario{
+class Usuario extends Miembro{
 	
 	private $login;
 	private $password;
@@ -16,7 +17,7 @@ class Usuario{
 		if($this->password == $password){
 			return TRUE;
 		}else{
-			throw new Exception("Usuario y password no coinciden!");
+			throw new Exception("Usuario y Clave no coinciden");
 		}
 	}
 	
