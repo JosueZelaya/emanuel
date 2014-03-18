@@ -6,12 +6,13 @@ class Usuario extends Miembro{
 	private $login;
 	private $password;
 	private $habilitado;
-	
-	public function Usuario(){
-		$this->login = "";
-		$this->password = "";
-		$this->habilitado = "";
-	}
+        
+        public function __construct() {
+            parent::__construct();
+            $this->login = "";
+            $this->password = "";
+            $this->habilitado = "";
+        }
 	
 	public function comprobarPassword($password){
 		if($this->password == $password){

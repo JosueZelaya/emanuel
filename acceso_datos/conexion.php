@@ -13,9 +13,10 @@ abstract class conexion {
 	}
 	
 	public static function consulta($sql_consulta){
-		$respuesta = pg_exec(conexion::conectar(), $sql_consulta) or die("No se pudo ejecutar la consulta:".$sql_consulta."\n"); 
+                $conexion = conexion::conectar();
+		$respuesta = pg_exec($conexion, $sql_consulta) or die("No se pudo ejecutar la consulta:".$sql_consulta."\n"); 
 		$array = pg_fetch_array($respuesta);
-		//desconectar();
+		conexion::desconectar($conexion);
 		return $array;
 	}
 	

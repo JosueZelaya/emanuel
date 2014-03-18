@@ -11,11 +11,12 @@ abstract class ManejadorPersonal{
 		} 
 		else{
 		 	$sql_consulta = "SELECT * FROM usuarios WHERE LOGIN='".$login."'";
-			$respueta = conexion::consulta($sql_consulta);
+			$respuesta = conexion::consulta($sql_consulta);
 			$usuario = new Usuario();
-			$usuario->setlogin("admin");
-			$usuario->setPassword("password");
-			$usuario->setHabilitado("1");
+                        $usuario->setId($respuesta['id_usuario']);
+			$usuario->setlogin($respuesta['login']);
+			$usuario->setPassword($respuesta['password']);
+			$usuario->setHabilitado($respuesta['habilitado']);
 			return $usuario;
 		}		
 	}
