@@ -19,6 +19,7 @@ abstract class ManejadorSesion{
                     $usuario->setNombres($user_nombre);
                     
                     $_SESSION['id_usuario']=$user_id;
+                    $_SESSION['usuario_nombre'] = $user_nombre;
                     $_SESSION['usuario'] = $usuario;
                     $_SESSION['navegador_usuario'] = $user_navegador;
                     
@@ -37,7 +38,7 @@ abstract class ManejadorSesion{
             $httponly = true;
             // Forces sessions to only use cookies.
             if (ini_set('session.use_only_cookies', 1) === FALSE) {
-                header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
+                header("Location: Error.php?err=Could not initiate a safe session (ini_set)");
                 exit();
             }
             // Gets current cookies params.
@@ -52,9 +53,37 @@ abstract class ManejadorSesion{
             session_start();            // Start the PHP session 
             session_regenerate_id();    // regenerated the session, delete the old one. 
         }
+        
+        public static function login_check() {
+            // Check if all session variables are set 
+            if (isset($_SESSION['id_usuario'],$_SESSION['usuario_nombre'],$_SESSION['usuario'],$_SESSION['navegador_usuario'])) {
+                return true;
+            } else {
+                // Not logged in 
+                return false;
+            }
+        }
 	
 	public static function cerrarSesion(){
-		
+                ManejadorSesion::sec_session_start();
+
+                // Unset all session values 
+                $_SESSION = array();
+
+                // get session parameters 
+                $params = session_get_cookie_params();
+
+                // Delete the actual cookie. 
+                setcookie(session_name(),
+                        '', time() - 42000, 
+                        $params["path"], 
+                        $params["domain"], 
+                        $params["secure"], 
+                        $params["httponly"]);
+
+                // Destroy session 
+                session_destroy();
+                header('Location: ../capa_interfaz/login.php');
 	}
 	
 }

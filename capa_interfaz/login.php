@@ -24,7 +24,7 @@
                     try{
                             $usuario = ManejadorSesion::iniciarSesion($login, $password);
                             //Aquí irá el header hacia la página principal a la que hemos accedido
-                            
+                            header("Location: usuarioAutenticado.php");
                             
                             
                             echo "<font color='green'> Bienvenido ".$usuario->getLogin()."</font>";
