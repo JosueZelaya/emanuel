@@ -25,6 +25,11 @@
                             $usuario = ManejadorSesion::iniciarSesion($login, $password);
                             //Aquí irá el header hacia la página principal a la que hemos accedido
                             header("Location: usuarioAutenticado.php");
+//                            echo htmlentities($_SESSION['usuario_id'])."<br/>";
+//                            echo htmlentities($_SESSION['usuario_nombres'])."<br/>";
+//                            echo htmlentities($_SESSION['usuario_apellidos'])."<br/>";
+//                            echo htmlentities($_SESSION['usuario_navegador'])."<br/>";
+//                            echo htmlentities($_SESSION['usuario_login'])."<br/>";
                             
                             
                             echo "<font color='green'> Bienvenido ".$usuario->getLogin()."</font>";

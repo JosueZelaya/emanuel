@@ -8,7 +8,7 @@ abstract class ManejadorSesion{
 	public static function iniciarSesion($login,$password){
                 try{
                     $usuario = ManejadorPersonal::getUsuario($login);
-                    $usuario->comprobarPassword($password);
+                    $usuario->comprobarPassword(hash('sha512',$password));
                     //Obtenemos el navegador y sistema operativo del usuario
                     $user_navegador = $_SERVER['HTTP_USER_AGENT'];
                     // XSS protection as we might print this value
@@ -17,11 +17,16 @@ abstract class ManejadorSesion{
                     // XSS protection as we might print this value
                     $user_nombre = preg_replace("/[^a-zA-Z0-9_\-]+/","",$usuario->getNombres());
                     $usuario->setNombres($user_nombre);
+                    // XSS protection as we might print this value
+                    $user_apellidos = preg_replace("/[^a-zA-Z0-9_\-]+/","",$usuario->getApellidos());
+                    $usuario->setApellidos($user_apellidos);
                     
-                    $_SESSION['id_usuario']=$user_id;
-                    $_SESSION['usuario_nombre'] = $user_nombre;
-                    $_SESSION['usuario'] = $usuario;
-                    $_SESSION['navegador_usuario'] = $user_navegador;
+                    $_SESSION['usuario_id']=$user_id;
+                    $_SESSION['usuario_login']=$login;
+                    $_SESSION['usuario_nombres'] = $user_nombre;
+                    $_SESSION['usuario_apellidos'] = $user_apellidos;
+                    $_SESSION['usuario_navegador'] = $user_navegador;
+                    $_SESSION['usuario_login_string'] = hash('sha512',$user_navegador.$usuario->getPassword());
                     
                     
                     return $usuario;
@@ -33,7 +38,7 @@ abstract class ManejadorSesion{
         
         public static function sec_session_start() {
             $session_name = 'sistema_emanuel';   // Set a custom session name
-            $secure = true;
+            $secure = FALSE; //Ponerla a true si estoy usando https
             // This stops JavaScript being able to access the session id.
             $httponly = true;
             // Forces sessions to only use cookies.
@@ -55,13 +60,24 @@ abstract class ManejadorSesion{
         }
         
         public static function login_check() {
-            // Check if all session variables are set 
-            if (isset($_SESSION['id_usuario'],$_SESSION['usuario_nombre'],$_SESSION['usuario'],$_SESSION['navegador_usuario'])) {
-                return true;
+            // Check if all session variables are set
+            if (isset($_SESSION['usuario_id'],$_SESSION['usuario_login'],$_SESSION['usuario_nombres'],$_SESSION['usuario_apellidos'],$_SESSION['usuario_navegador'],$_SESSION['usuario_login_string'])) {
+                //return true;
+                $sql_consulta = "SELECT password FROM usuarios WHERE login='".$_SESSION['usuario_login']."'";
+                $respuesta = conexion::consulta($sql_consulta);
+                $password = hash('sha512',$respuesta['password']);
+                $cadena_autenticacion = hash('sha512',$_SESSION['usuario_navegador'].$password);
+                if($cadena_autenticacion==$_SESSION['usuario_login_string']){
+                    return true;
+                }else{
+                    return false;
+                }
+                
             } else {
                 // Not logged in 
                 return false;
             }
+            
         }
 	
 	public static function cerrarSesion(){

@@ -10,13 +10,24 @@ abstract class ManejadorPersonal{
 			throw new Exception("¡Login Inválido!");	
 		} 
 		else{
-		 	$sql_consulta = "SELECT * FROM usuarios WHERE LOGIN='".$login."'";
+                        $sql_consulta = "SELECT * FROM usuarios INNER JOIN miembros ON id_usuario=id_miembro INNER JOIN personas ON id_miembro=id_persona WHERE login='".$login."'";
 			$respuesta = conexion::consulta($sql_consulta);
 			$usuario = new Usuario();
                         $usuario->setId($respuesta['id_usuario']);
-			$usuario->setlogin($respuesta['login']);
-			$usuario->setPassword($respuesta['password']);
+                        $usuario->setlogin($respuesta['login']);
+                        //Si el password no está encriptado en la base de datos se encripta acá
+                        //Borrar la siguiente línea si el password ya está encriptado en la BD
+                        $password = hash('sha512',$respuesta['password']);                        
+			$usuario->setPassword($password);
 			$usuario->setHabilitado($respuesta['habilitado']);
+                        $usuario->setNombres($respuesta['nombres']);
+                        $usuario->setApellidos($respuesta['apellidos']);
+                        $usuario->setCorreo($respuesta['correo']);
+                        $usuario->setTelefono($respuesta['telefono']);
+                        $usuario->setDireccion($respuesta['direccion']);
+                        $usuario->setFechaNacimiento($respuesta['fecha_nacimiento']);
+                        $usuario->setFechaNuevoNacimiento($respuesta['fecha_nuevo_nacimiento']);
+                        $usuario->setFechaBautismo($respuesta['fecha_bautismo']);			
 			return $usuario;
 		}		
 	}
