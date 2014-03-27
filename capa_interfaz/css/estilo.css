@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 03-20-2014, 12:08:29 AM
+    Author     : alexander
+*/
+
+.columna{
+        height: 90%;
+        width: 20%;
+        float: left;
+        background-color: white;
+        border-bottom: 1px solid #F7CDCD;            
+}
+
+
+.cabecera{
+	height: 10%;
+	width: 40%;	
+	background-color: white;
+	color: #80141C; 
+	border-left: 1px solid #F7CDCD;
+	font-size: 12px;
+	font-weight: normal;	
+	text-align: center;
+	
+	display: table;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );
+	background:-moz-linear-gradient( center top, #991821 5%, #80141C 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');
+	background-color:#991821; 
+	color:#FFFFFF; 
+	font-size: 15px; 
+	font-weight: bold; 
+	border-left: 1px solid #B01C26; 
+}
+
+.fila{
+        height: 10%;
+        width: 100%;
+
+        vertical-align: middle;
+        cursor: pointer;
+        background-color: white;
+        color: #80141C; 
+        border-left: 1px solid #F7CDCD;
+        border-right: 1px solid #F7CDCD; 
+        font-size: 12px;
+        font-weight: normal;
+        
+        text-align: center;
+}
+
+.fila2{
+        height: 10%;
+        width: 100%;
+        
+        vertical-align: middle;
+        cursor: pointer;
+        background: #D8EBDF;
+        background: #EFF4F3;    
+
+        color: #80141C;
+        border-left: 1px solid #F7CDCD;
+        border-right: 1px solid #F7CDCD; 
+        font-size: 12px;
+        font-weight: normal;
+
+        text-align: center;
+}
+
+.fade {
+opacity: 0;
+-webkit-transition: opacity .15s linear;
+transition: opacity .15s linear;
+}

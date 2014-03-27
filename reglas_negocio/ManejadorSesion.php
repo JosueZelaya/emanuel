@@ -59,22 +59,24 @@ abstract class ManejadorSesion{
             session_regenerate_id();    // regenerated the session, delete the old one. 
         }
         
-        public static function login_check() {
-            // Check if all session variables are set
-            if (isset($_SESSION['usuario_id'],$_SESSION['usuario_login'],$_SESSION['usuario_nombres'],$_SESSION['usuario_apellidos'],$_SESSION['usuario_navegador'],$_SESSION['usuario_login_string'])) {
-                //return true;
-                $sql_consulta = "SELECT password FROM usuarios WHERE login='".$_SESSION['usuario_login']."'";
-                $respuesta = conexion::consulta($sql_consulta);
-                $password = hash('sha512',$respuesta['password']);
-                $cadena_autenticacion = hash('sha512',$_SESSION['usuario_navegador'].$password);
+        //Verifica la autenticidad de la sesion
+        public static function comprobar_sesion() {
+            // Verifica si todas las variables de sesión están asignadas
+            if (isset($_SESSION['usuario_id'],$_SESSION['usuario_login'],$_SESSION['usuario_nombres'],$_SESSION['usuario_apellidos'],$_SESSION['usuario_navegador'],$_SESSION['usuario_login_string'])) {              
+                //Obtenemos el usuario al que debería pertencer la sesión
+                $usuario = ManejadorPersonal::getUsuario($_SESSION['usuario_login']);
+                //Comprobamos que la cadena de autenticación coincida con la de la sesión
+                $cadena_autenticacion = hash('sha512',$_SESSION['usuario_navegador'].$usuario->getPassword());
                 if($cadena_autenticacion==$_SESSION['usuario_login_string']){
+                    //Está autenticado
                     return true;
                 }else{
+                    //No está autenticado
                     return false;
                 }
                 
             } else {
-                // Not logged in 
+                // No está autenticado 
                 return false;
             }
             

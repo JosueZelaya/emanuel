@@ -2,7 +2,7 @@
 
 require_once '../reglas_negocio/ManejadorSesion.php';
 ManejadorSesion::cerrarSesion();
-header("location: login.php");
+header("location: index.php");
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
