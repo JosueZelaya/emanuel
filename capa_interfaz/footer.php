@@ -4,10 +4,10 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div class="navbar navbar-default navbar-fixed-bottom">
+<!--<div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
-        <p class="navbar-text pull-left">Desarrollado Por Alexander Zelaya</p>            
+        <p class="navbar-text pull-left">Desarrollador Josué Zelaya</p>            
         <a href="https://www.facebook.com/alexander006" class="navbar-btn btn-danger btn pull-right">Contactar</a>
         
     </div>
-</div>
+</div>-->

@@ -7,11 +7,11 @@ $(function (){
     });
     
     //Funcion 2: Autocompletado en busqueda
-    $('#buscar_usuario').autocomplete({                    
+    $('#buscar_usuario').autocomplete({
             source : 'autocompletarUsuario.php',
             select : function(event,ui){
-                $('#resultado').slideUp('fast',function(){
-                   $('#resultado').html(
+                $('#mostrarUsuarios').slideUp('fast',function(){
+                   $('#mostrarUsuarios').html(
                     "detalles usuario</h2><br/>"+
                     'nombre: '+ui.item.value+'<br/>'+                       
                     'telefono: '+ui.item.telefono+'<br/>'+
@@ -19,8 +19,8 @@ $(function (){
 
                     );                                                            
                 });
-                $('#resultado').slideDown('fast');
-            }                        
+                $('#mostrarUsuarios').slideDown('fast');
+            }
     });
     
     //Funcion 3: Autocompletado cuando el elemento se agregó después
@@ -28,25 +28,21 @@ $(function (){
          $(this).autocomplete({                    
             source : 'autocompletarUsuario.php',
             select : function(event,ui){
-                $('#resultado').slideUp('fast',function(){
-                   $('#resultado').html(                    
-                    "<div id='cabecera' class='cabecera'><h2>"+ui.item.value+"</h2></div>"+
-                    "<div id='col1' class='columna'>"+
-                    "<div id='' class='fila'>nombre: </div>"+
-                    "<div id='' class='fila2'>telefono: </div>"+
-                    "<div id='' class='fila'>fecha de nacimiento: </div>"+
-                    "</div>"+
+                $('#mostrarUsuarios').slideUp('fast',function(){
+                   $('#mostrarUsuarios').html(                    
+                    "<tr>"+
+                    "<td>"+ui.item.nombres+"</td>"+
+                    "<td>"+ui.item.apellidos+"</td>"+
+                    "<td>"+ui.item.dui+"</td>"+
+                    "<td>"+ui.item.correo+"</td>"+
+                    "<td>"+ui.item.telefono+"</td>"+
+                    "<td>"+ui.item.direccion+"</td>"+
+                    "<td>"+ui.item.fecha+"</td>"+
+                    "</tr>"
                     
-                    "<div id='col2' class='columna'>"+
-                    "<div id='' class='fila'>"+ui.item.value+"</div>"+
-                    "<div id='' class='fila2'>"+ui.item.telefono+"</div>"+
-                    "<div id='' class='fila'>"+ui.item.fecha+"</div>"+
-                    "</div>"
-                    
-
                     );                                                            
                 });
-                $('#resultado').slideDown('fast');
+                $('#mostrarUsuarios').slideDown('fast');
             }                        
         });
     });

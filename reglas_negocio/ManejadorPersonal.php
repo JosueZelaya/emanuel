@@ -32,6 +32,25 @@ abstract class ManejadorPersonal{
 		}		
 	}
         
+        public static function getTodasPersonas(){
+                        $usuarios = array();
+                        $sql_consulta = "SELECT * FROM personas";
+			$respuesta = conexion::consulta2($sql_consulta);
+                        
+                        while ($row = pg_fetch_array($respuesta)){
+                            $usuario = new Usuario();
+                            $usuario->setNombres($row['nombres']);
+                            $usuario->setApellidos($row['apellidos']);
+                            $usuario->setDUI($row['dui']);
+                            $usuario->setCorreo($row['correo']);
+                            $usuario->setTelefono($row['telefono']);
+                            $usuario->setDireccion($row['direccion']);
+                            $usuario->setFechaNacimiento($row['fecha_nacimiento']);
+                            $usuarios[] = $usuario;
+                        }                   			
+			return $usuarios;
+        }
+        
         public static function buscarUsuario($buscarComo){            
             $datos = array();
             if (ereg("[^A-Za-z0-9]+",$buscarComo)) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES
@@ -42,7 +61,7 @@ abstract class ManejadorPersonal{
                 $respuesta = conexion::consulta2($sql_consulta);        
                                 
                 while ($row = pg_fetch_array($respuesta)){
-                    $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"telefono"=>$row['telefono'],"fecha"=>$row['fecha_nacimiento']);                    
+                    $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"nombres" => $row['nombres'],"apellidos" => $row['apellidos'],"dui" => $row['dui'],"correo" => $row['correo'],"telefono"=>$row['telefono'],"direccion" => $row['direccion'],"fecha"=>$row['fecha_nacimiento']);                    
                 }
                 return $datos;
             }

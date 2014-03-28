@@ -22,6 +22,10 @@ ManejadorSesion::sec_session_start();
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- estilo -->
+    <link href="css/estilo.css" rel="stylesheet">
+<!--    <link href="js/jquery-ui/css/cupertino/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="js/jquery-ui/css/smoothness/css/smoothness/jquery-ui-1.10.4.custom.min.css">
     
   </head>
   <body>
@@ -32,6 +36,11 @@ ManejadorSesion::sec_session_start();
       <!-- Barra de menu -->
         <?php include 'menuPrincipal.php';?>
       
+      <!-- Jumbotron para mostrar a todos los usuarios -->
+        <?php include './jumbotronUsuarios.php';?>
+      
+      <!-- footer -->
+        <?php include './footer.php';?>
       
     <?php else : ?>
         <p>

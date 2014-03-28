@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : alexander
 */
 
+body{
+    margin-bottom: 10px;
+}
+
 .columna{
         height: 90%;
         width: 20%;

@@ -5,6 +5,7 @@ class Persona{
         private $id;
 	private $nombres;
 	private $apellidos;
+        private $dui;
 	private $correo;
 	private $telefono;
 	private $direccion;
@@ -30,6 +31,10 @@ class Persona{
         
         public function getApellidos(){
             return $this->apellidos;
+        }
+        
+        public function getDUI(){
+            return $this->dui;
         }
         
         public function getCorreo(){
@@ -58,6 +63,10 @@ class Persona{
         
         public function setApellidos($apellidos){
             $this->apellidos = $apellidos;
+        }
+        
+        public function setDUI($dui){
+            $this->dui = $dui;
         }
         
         public function setCorreo($correo){
