@@ -28,13 +28,13 @@ $("#foo").submit(function(event){
         data: serializedData,
         success: function(data){
             if(data==='Bienvenido'){
-             window.location.replace('usuarioAutenticado.php');   
+             window.location.replace('areaUsuarios.php');   
             }else{
-                $("#resultado").html(data);
+                $("#resultadoLogin").html(data);
             }            
         },
         error:function(){
-            $("#resultado").html('Los datos no se pudieron enviar');
+            $("#resultadoLogin").html('Los datos no se pudieron enviar');
         }
     });
 
@@ -46,5 +46,9 @@ $("#foo").submit(function(event){
     // prevent default posting of form
     event.preventDefault();
 
+});
+
+$("#password").focus(function (){
+    $("#resultadoLogin").html("");
 });
 

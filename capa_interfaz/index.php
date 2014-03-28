@@ -1,16 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+
+require_once '../reglas_negocio/ManejadorSesion.php';
+
+ManejadorSesion::sec_session_start();
+?>
 <html lang="es">
   <head>
       <meta charset="UTF-8">
      <meta http-equiv="content-type" content="text/html; charset=UTF-8">         
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Sistema Emanuel</title>
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -56,5 +62,6 @@ and open the template in the editor.
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/placeholder.js"></script>
     <script type="text/javascript" src="js/ajaxpost.js"></script>
+    
   </body>
 </html>

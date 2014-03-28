@@ -17,8 +17,8 @@ ManejadorSesion::sec_session_start();
     </head>
     <body>
         <?php if (ManejadorSesion::comprobar_sesion() == true) : ?>
-            <p>Bienvenido <?php echo htmlentities($_SESSION['usuario_nombres']);             
-            ?>! <a href='logout.php'>Cerrar Sesion</a></p>
+            <p>Bienvenido <?php echo htmlentities($_SESSION['usuario_nombres']);?>! 
+                <a href='logout.php'>Cerrar Sesion</a></p>
             
             <div id="contenedor">
             

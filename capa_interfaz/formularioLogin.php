@@ -12,12 +12,12 @@
          <div class="form-group">
             <label for="password" class="col-lg-2 control-label">Clave</label>
             <div class="col-lg-10">
-                <input type="password" id="password" name="password" class="form-control" placeholder="Clave" required/>
+                <input type="password" id="password" name="password" class="password form-control" placeholder="Clave" required/>
             </div>
         </div>
     </div>
     <div class="modal-footer"> 
-        <div id="resultado"></div>
+        <div id="resultadoLogin" class="resultadoLogin"></div>
         <!--<button class="btn btn-primary" type="submit" name="submit">Entrar</button>-->
         <input type="submit" name="submit" class="btn btn-primary" value="Entrar" tabindex="4">
         <a class="btn btn-default" data-dismiss="modal">Cancelar</a>                    
