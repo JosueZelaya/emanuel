@@ -6,8 +6,8 @@ and open the template in the editor.
 -->
 <html lang="es">
   <head>
-     <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
-        <meta charset="utf-8">
+      <meta charset="UTF-8">
+     <meta http-equiv="content-type" content="text/html; charset=UTF-8">         
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap 101 Template</title>
@@ -34,7 +34,7 @@ and open the template in the editor.
     <?php //include 'mensajesMarketing.php';?>
     
     <!-- Footer -->
-    <?php include "footer.php";?>
+    <?php //include "footer.php";?>
         
 
     
