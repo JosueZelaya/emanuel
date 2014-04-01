@@ -1,9 +1,13 @@
 $(function (){
-    $('#contenedor').load("agregarUsuario.php");
+//    $('#contenedor').load("agregarUsuario.php");
     
     //Funcion 1: Carga una Página en el div contenedor al hace click al elemento con id=cargar
     $('#cargar').click(function (){
         $('#contenedor').load("agregarUsuario.php");    
+    });
+    
+    $('#agregarPersona').click(function(){
+        $('#container').load("agregarPersona.php");    
     });
     
     //Funcion 2: Autocompletado en busqueda

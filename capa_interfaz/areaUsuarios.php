@@ -20,12 +20,14 @@ ManejadorSesion::sec_session_start();
     <title>Area de Usuario</title>
 
     <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     
-    <!-- estilo -->
-    <link href="css/estilo.css" rel="stylesheet">
 <!--    <link href="js/jquery-ui/css/cupertino/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">-->
     <link rel="stylesheet" type="text/css" href="js/jquery-ui/css/smoothness/css/smoothness/jquery-ui-1.10.4.custom.min.css">
+    
+    <!-- datepicker -->
+    <link href="css/default.css" type="text/css" rel="stylesheet">
+    <link href="css/default.date.css" type="text/css" rel="stylesheet">    
     
   </head>
   <body>
@@ -35,6 +37,44 @@ ManejadorSesion::sec_session_start();
       
       <!-- Barra de menu -->
         <?php include 'menuPrincipal.php';?>
+      
+      <nav>
+        <ul class="nav nav-pills nav-stacked span2 col-lg-1">
+            <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Personas <!--<b class="caret"></b>--></a>
+                  <ul class="dropdown-menu">
+                    <li><a id="agregarPersona" class="agregarPersona" href="#">Agregar</a></li>
+                    <li><a href="#">Modificar</a></li>
+                    <li><a href="#">Eliminar</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Ministerios <!--<b class="caret"></b>--></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Agregar</a></li>
+                    <li><a href="#">Modificar</a></li>
+                    <li><a href="#">Eliminar</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Celulas <!--<b class="caret"></b>--></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Agregar</a></li>
+                    <li><a href="#">Modificar</a></li>
+                    <li><a href="#">Eliminar</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Asistencias <!--<b class="caret"></b>--></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Cultos</a></li>
+                    <li><a href="#">Ministerios</a></li>
+                    <li><a href="#">Celulas</a></li>
+                  </ul>
+              </li>
+          
+        </ul>
+      </nav>
       
       <!-- Jumbotron para mostrar a todos los usuarios -->
         <?php include './jumbotronUsuarios.php';?>
@@ -54,7 +94,9 @@ ManejadorSesion::sec_session_start();
     <script type="text/javascript" src="js/jquery-ui/ui/jquery.ui.position.js"></script>
     <script type="text/javascript" src="js/jquery-ui/ui/jquery.ui.menu.js"></script>
     <script type="text/javascript" src="js/jquery-ui/ui/jquery.ui.autocomplete.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/ui/jquery.ui.datepicker.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>    
-    <script type="text/javascript" src="js/funciones.js"></script>    
+    <script type="text/javascript" src="js/funciones.js"></script> 
+<!--    <script type="text/javascript" src="js/ajaxpost.js"></script>-->
     </body>
 </html>

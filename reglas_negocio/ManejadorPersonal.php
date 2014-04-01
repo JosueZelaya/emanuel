@@ -85,11 +85,35 @@ abstract class ManejadorPersonal{
 	}
 	
 	public static function agregarPersona($persona){
-		
+		if(ManejadorPersonal::existe($persona)){
+                    throw new Exception("La persona ya ha sido agregada anteriormente");
+                }else{
+                    if($persona->getNombres()!=="" && $persona->getApellidos()!==""){
+                        $consulta = "INSERT INTO personas (nombres,apellidos,dui,correo,telefono,direccion,fecha_nacimiento) VALUES ('".
+                                $persona->getNombres()."','".
+                                $persona->getApellidos()."','".
+                                $persona->getDUI()."','".
+                                $persona->getCorreo()."','".
+                                $persona->getTelefono()."','".
+                                $persona->getDireccion()."','".
+                                $persona->getFechaNacimiento()."')";
+                        conexion::consulta2($consulta);
+                    }else{
+                        throw new Exception("No se puede agregar a la persona si le falta el nombre o apellido");
+                    }
+                }
 	}
+        
+        
 	
 	public static function existe($persona){
-		
+		$consulta = "SELECT * FROM personas WHERE nombres='".$persona->getNombres()."' AND apellidos='".$persona->getApellidos()."'";
+                $respuesta = conexion::consulta2($consulta);
+                if(pg_fetch_array($respuesta)){
+                    return true;
+                }else{
+                    return false;
+                }
 	}
 	
 	public static function poseeRol($roles,$rol){

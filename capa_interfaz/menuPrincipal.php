@@ -1,7 +1,13 @@
-
 <div class="navbar navbar-inverse navbar-static-top">
     <div class="container">
-        <a href="#" class="navbar-brand">Emanuel</a>       
+        <?php if (ManejadorSesion::comprobar_sesion() == true) : ?>
+            <a href="areaUsuarios.php" class="navbar-brand">Emanuel</a>
+        <?php else : ?>
+            <a href="index.php" class="navbar-brand">Emanuel</a>
+        <?php endif; ?>
+        
+               
+        
         <button class="navbar-toggle" data-toggle="collapse" data-target=".enlacesBarra">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -42,7 +48,6 @@
     </div>
     
 </div>
-
 <div class="modal fade" id="Autenticar" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
