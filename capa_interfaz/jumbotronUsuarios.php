@@ -1,6 +1,6 @@
-<div class="container col-lg-11">
+<div class="container col-sm-9">
     
-    <div class="jumbotron text-center">
+    <div class="text-center">
         
 <!--        <h1>¡Dios es Fiel!</h1>-->
 

@@ -65,6 +65,5 @@ ManejadorSesion::sec_session_start();
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/placeholder.js"></script>
     <script type="text/javascript" src="js/ajaxpost.js"></script>
-    
   </body>
 </html>

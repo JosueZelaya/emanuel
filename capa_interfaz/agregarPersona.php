@@ -4,6 +4,7 @@ ManejadorSesion::sec_session_start();
 
 if (ManejadorSesion::comprobar_sesion() == true) : ?>
 
+<div class="panel panel-default col-sm-11">
     <form class="form-horizontal" id="formularioAgregarPersona">
         <div class="modal-header">
             <!--<h4>Agregar Persona</h4>-->
@@ -62,6 +63,8 @@ if (ManejadorSesion::comprobar_sesion() == true) : ?>
             <!--<a class="btn btn-primary">Entrar</a>-->
         </div>
     </form>
+</div>
+    
 
 
 <?php else : ?>

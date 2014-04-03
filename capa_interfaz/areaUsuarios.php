@@ -28,7 +28,6 @@ ManejadorSesion::sec_session_start();
     <!-- datepicker -->
     <link href="css/default.css" type="text/css" rel="stylesheet">
     <link href="css/default.date.css" type="text/css" rel="stylesheet">    
-    
   </head>
   <body>
       
@@ -36,48 +35,20 @@ ManejadorSesion::sec_session_start();
     <?php if (ManejadorSesion::comprobar_sesion() == true) : ?>
       
       <!-- Barra de menu -->
-        <?php include 'menuPrincipal.php';?>
-      
-      <nav>
-        <ul class="nav nav-pills nav-stacked span2 col-lg-1">
-            <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Personas <!--<b class="caret"></b>--></a>
-                  <ul class="dropdown-menu">
-                    <li><a id="agregarPersona" class="agregarPersona" href="#">Agregar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                  </ul>
-              </li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Ministerios <!--<b class="caret"></b>--></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Agregar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                  </ul>
-              </li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Celulas <!--<b class="caret"></b>--></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Agregar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                  </ul>
-              </li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Asistencias <!--<b class="caret"></b>--></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Cultos</a></li>
-                    <li><a href="#">Ministerios</a></li>
-                    <li><a href="#">Celulas</a></li>
-                  </ul>
-              </li>
+        <?php include 'menuPrincipal.php';?>    
+    
+        
+      <div class="row">       
+
+          <!-- barra vertical con opciones de administración -->
+          <?php include './barraVertical.php';?>
+
+          <!-- Jumbotron para mostrar a todos los usuarios -->
+            <?php include './jumbotronUsuarios.php';?>        
           
-        </ul>
-      </nav>
+      </div>
       
-      <!-- Jumbotron para mostrar a todos los usuarios -->
-        <?php include './jumbotronUsuarios.php';?>
+      
       
       <!-- footer -->
         <?php include './footer.php';?>

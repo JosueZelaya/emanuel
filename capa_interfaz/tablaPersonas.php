@@ -1,8 +1,8 @@
-<div class="panel panel-default">
+<div class="panel panel-default col-sm-11">
     <!-- Default panel contents -->
     <div class="panel-heading" style="background: white">
     
-        <div class="input-group col-lg-4">
+        <div class="input-group col-sm-4">
           <input type="text" class="form-control" placeholder="Buscar" id="buscar_usuario" name="buscar_usuario">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>

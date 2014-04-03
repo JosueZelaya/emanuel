@@ -2,19 +2,26 @@
     <div class="container">
         <?php if (ManejadorSesion::comprobar_sesion() == true) : ?>
             <a href="areaUsuarios.php" class="navbar-brand">Emanuel</a>
+            
+            <button id="botonBarraVertical" class="navbar-toggle navbar-brand" data-toggle="collapse" data-target=".barraVertical">                
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                
+                <span class="icon-bar"></span>                
+            </button>
         <?php else : ?>
             <a href="index.php" class="navbar-brand">Emanuel</a>
         <?php endif; ?>
         
                
         
-        <button class="navbar-toggle" data-toggle="collapse" data-target=".enlacesBarra">
+        <button id="botonBarraPrincipal" class="navbar-toggle navbar-brand" data-toggle="collapse" data-target=".enlacesBarra">
+            <span id="spanBP" class="glyphicon glyphicon-plus"></span>
+<!--            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        -->
         </button>
         
-        <div class="collapse navbar-collapse enlacesBarra">
+        <div id="barraPrincipal" class="collapse navbar-collapse enlacesBarra">
             
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#" >Inicio</a></li>

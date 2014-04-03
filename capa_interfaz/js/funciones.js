@@ -52,6 +52,13 @@ $(function (){
     });
     
     
+    $('#barraPrincipal').on('shown.bs.collapse', function () {        
+        $("#spanBP").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+     });
+
+     $('#barraPrincipal').on('hidden.bs.collapse', function () {         
+        $("#spanBP").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+     });
     
     
 });
