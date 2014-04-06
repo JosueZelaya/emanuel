@@ -15,21 +15,21 @@ if($_POST){
 //    $persona->setDireccion("Col el jugado calle soy bobo");
 //    $persona->setFechaNacimiento("25/09/1993");
     
-    $persona = new Persona();
-    $persona->setNombres($_POST['nombres']);
-    $persona->setApellidos($_POST['apellidos']);
-    $persona->setDUI($_POST['dui']);
-    $persona->setCorreo($_POST['correo']);
-    $persona->setTelefono($_POST['telefono']);
-    $persona->setDireccion($_POST['direccion']);
-    $persona->setFechaNacimiento($_POST['nacimiento_submit']);
+    $personaNueva = new Persona();
+    $personaNueva->setNombres($_POST['nombres']);
+    $personaNueva->setApellidos($_POST['apellidos']);
+    $personaNueva->setDUI($_POST['dui']);
+    $personaNueva->setCorreo($_POST['correo']);
+    $personaNueva->setTelefono($_POST['telefono']);
+    $personaNueva->setDireccion($_POST['direccion']);
+    $personaNueva->setFechaNacimiento($_POST['nacimiento_submit']);
     
 
     try{
-        ManejadorPersonal::agregarPersona($persona);
-        echo "¡Persona Agregada!";
+        ManejadorPersonal::agregarPersona($personaNueva);
+        echo json_encode("¡Persona Agregada!");
     }catch(Exception $e){
-        echo $e->getMessage();
+        echo json_encode($e->getMessage());
     }   
 }
 ?>

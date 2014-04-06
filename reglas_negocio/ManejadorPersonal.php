@@ -34,11 +34,12 @@ abstract class ManejadorPersonal{
         
         public static function getTodasPersonas(){
                         $usuarios = array();
-                        $sql_consulta = "SELECT * FROM personas";
+                        $sql_consulta = "SELECT * FROM personas ORDER BY nombres";
 			$respuesta = conexion::consulta2($sql_consulta);
                         
                         while ($row = pg_fetch_array($respuesta)){
                             $usuario = new Usuario();
+                            $usuario->setId($row['id_persona']);
                             $usuario->setNombres($row['nombres']);
                             $usuario->setApellidos($row['apellidos']);
                             $usuario->setDUI($row['dui']);
@@ -61,7 +62,7 @@ abstract class ManejadorPersonal{
                 $respuesta = conexion::consulta2($sql_consulta);        
                                 
                 while ($row = pg_fetch_array($respuesta)){
-                    $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"nombres" => $row['nombres'],"apellidos" => $row['apellidos'],"dui" => $row['dui'],"correo" => $row['correo'],"telefono"=>$row['telefono'],"direccion" => $row['direccion'],"fecha"=>$row['fecha_nacimiento']);                    
+                    $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"id"=>$row['id_persona'],"nombres" => $row['nombres'],"apellidos" => $row['apellidos'],"dui" => $row['dui'],"correo" => $row['correo'],"telefono"=>$row['telefono'],"direccion" => $row['direccion'],"fecha"=>$row['fecha_nacimiento']);                    
                 }
                 return $datos;
             }
@@ -115,6 +116,16 @@ abstract class ManejadorPersonal{
                     return false;
                 }
 	}
+        
+        public static function existePersona($id){
+            $consulta = "SELECT * FROM personas WHERE id_persona='".$id."'";
+            $respuesta = conexion::consulta2($consulta);
+            if(pg_fetch_array($respuesta)){
+                return true;
+            }else{
+                return false;
+            }
+        }
 	
 	public static function poseeRol($roles,$rol){
 		
@@ -128,9 +139,38 @@ abstract class ManejadorPersonal{
 		
 	}
 	
-	public static function modificarPersona($actual,$nueva){
-		
+	public static function modificarPersona($actual,$nueva){            
+            if(ManejadorPersonal::existe($actual)){
+                if(ManejadorPersonal::existePersona($nueva->getId())){
+                    $nueva->guardar();  //Se guarda la persona
+                }else{
+                    throw new Exception("No existe la persona que se quiere modificar");
+                }                
+            }else{
+                throw new Exception("No existe la persona que se quiere modificar");
+            }            		
 	}
+        
+        public static function getPersona($id){
+            if (ereg("[^A-Za-z0-9]+",$id)) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES
+			throw new Exception("¡Login Inválido!");	
+		} 
+		else{
+                        $sql_consulta = "SELECT * FROM personas WHERE id_persona='".$id."'";
+			$respuesta = conexion::consulta($sql_consulta);
+			$persona = new Persona();
+                        $persona->setId($respuesta['id_persona']);
+                        $persona->setNombres($respuesta['nombres']);
+                        $persona->setApellidos($respuesta['apellidos']);
+                        $persona->setDUI($respuesta['dui']);
+                        $persona->setCorreo($respuesta['correo']);
+                        $persona->setTelefono($respuesta['telefono']);
+                        $persona->setDireccion($respuesta['direccion']);
+                        $persona->setFechaNacimiento($respuesta['fecha_nacimiento']);			
+			return $persona;
+		}            
+        }
+        
 	
 }
 

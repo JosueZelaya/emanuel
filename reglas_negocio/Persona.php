@@ -90,7 +90,15 @@ class Persona{
 	}
 	
 	public function guardar(){
-		
+		$consulta = "UPDATE personas SET nombres='".$this->getNombres()."',"
+                    . "apellidos='".$this->getApellidos()."',"
+                    . "dui='".$this->getDUI()."',"
+                    . "correo='".$this->getCorreo()."',"
+                    . "telefono='".$this->getTelefono()."',"
+                    . "direccion='".$this->getDireccion()."',"
+                    . "fecha_nacimiento='".$this->getFechaNacimiento()."'"
+                    . " WHERE id_persona='".$this->getId()."'";            
+                conexion::consulta2($consulta);
 	}
 	
 }

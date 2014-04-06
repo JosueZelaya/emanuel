@@ -31,6 +31,7 @@ $(document).on("submit","#formularioAgregarPersona",function(){
         url: "aPersona.php",        
         data: serializedData,
         success: function(datos){
+            datos = jQuery.parseJSON(datos);
             if(datos==="¡Persona Agregada!"){
                 $("#resultado").html("<font color='green'>"+datos+"</font>");
             }else{

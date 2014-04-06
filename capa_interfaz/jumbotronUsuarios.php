@@ -5,7 +5,9 @@
 <!--        <h1>¡Dios es Fiel!</h1>-->
 
     <div id="container" class="container">
-            <?php include './tablaPersonas.php';?>
+            <?php // include './tablaPersonas.php';
+                        include './tablaPersonasFootable.php';
+            ?>
     </div>
     
     </div>
