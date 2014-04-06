@@ -75,11 +75,11 @@ $(function (){
                    $('#mostrarUsuarios').html(                    
                     "<tr>"+
                     "<td><div style='cursor: pointer;' id='nombres' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Nombre'>"+ui.item.nombres+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='nombres' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Apellidos'>"+ui.item.apellidos+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='nombres' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese DUI'>"+ui.item.dui+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='nombres' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Correo'>"+ui.item.correo+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='nombres' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Telefono'>"+ui.item.telefono+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='nombres' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Dirección'>"+ui.item.direccion+"</div></td>"+
+                    "<td><div style='cursor: pointer;' id='apellidos' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Apellidos'>"+ui.item.apellidos+"</div></td>"+
+                    "<td><div style='cursor: pointer;' id='dui' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese DUI'>"+ui.item.dui+"</div></td>"+
+                    "<td><div style='cursor: pointer;' id='correo' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Correo'>"+ui.item.correo+"</div></td>"+
+                    "<td><div style='cursor: pointer;' id='telefono' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Telefono'>"+ui.item.telefono+"</div></td>"+
+                    "<td><div style='cursor: pointer;' id='direccion' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Dirección'>"+ui.item.direccion+"</div></td>"+
                     "<td><div style='cursor: pointer;' href='#' id='nacimiento' class='fechaEditable' data-type='date' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Fecha Nacimiento'>"+ui.item.fecha+"</div></td>"+
                     "</tr>"+
                     "<script type='text/javascript' src='bootstrap/xeditable/js/bootstrap-editable.js'></script>"+
