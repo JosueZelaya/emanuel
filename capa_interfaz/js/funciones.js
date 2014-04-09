@@ -38,10 +38,32 @@ $(function (){
             tiny: 180,                
             phone: 256,
             medium: 512,
-            tablet: 768,                
+            tablet: 768,
+            laptop: 1024
         }
     });
     
+    
+    $(document).on("click",".paginaPersonas",function(){        
+        var page = $(this).attr('data');        
+        var dataString = 'pagina='+page;          
+        $.ajax({
+            type: "GET",
+            url: "contenidoTablaPersonas.php",
+            data: dataString,
+            success: function(data) {                
+                $('#mostrarUsuarios').fadeIn(1000).html(data).trigger('footable_redraw');                
+            }            
+        });
+        $.ajax({
+            type: "GET",
+            url: "paginadorTablaPersonas.php",
+            data: dataString,
+            success: function(data){
+                $('.pagination').fadeIn(1000).html(data);
+            }
+        });
+    });
     
     //Funcion 3: Autocompletado cuando el elemento se agregó después
     $(document).on("keydown.autocomplete","#buscar_usuario",function(){
@@ -54,14 +76,15 @@ $(function (){
                     "<td data-toggle='true' class='footable-first-column'><span class='footable-toogle'></span>"+ui.item.nombres+"</td>"+
                     "<td>"+ui.item.apellidos+"</td>"+
                     "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.dui+"</td>"+
-                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.correo+"</td>"+
                     "<td data-hide='tiny'>"+ui.item.telefono+"</td>"+
+                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.correo+"</td>"+                    
                     "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.direccion+"</td>"+
                     "<td data-hide='tiny,phone,medium' class='footable-last-column'>"+ui.item.fecha+"</td>"+
                     "</tr>"
                     ).trigger('footable_redraw');                    
                 });
-                $('#mostrarUsuarios').slideDown('fast');                
+                $('#mostrarUsuarios').slideDown('fast');
+                $('.pagination').html("");
             }                        
         });
     });

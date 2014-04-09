@@ -24,9 +24,6 @@ ManejadorSesion::sec_session_start();
     <link href="css/carrusel.css" rel="stylesheet">
     <!-- login -->
     
-    <!-- estilo -->
-    <link href="css/estilo.css" rel="stylesheet">
-    
   </head>
   <body>
     
