@@ -86,7 +86,7 @@ abstract class ManejadorPersonal{
 			throw new Exception("¡Nombre invalido!");	
             } else{
                 //$sql_consulta = "SELECT * FROM personas INNER JOIN miembros ON personas.id_persona=miembros.id_miembro INNER JOIN usuarios ON usuarios.id_usuario=miembros.id_miembro WHERE personas.nombres LIKE '%".$buscarComo."%' OR personas.apellidos LIKE '%".$buscarComo."%'";
-                $sql_consulta = "SELECT * FROM personas WHERE nombres ILIKE '%".$buscarComo."%' OR apellidos LIKE '%".$buscarComo."%'";
+                $sql_consulta = "SELECT * FROM personas WHERE nombres ILIKE '%".$buscarComo."%' OR apellidos ILIKE '%".$buscarComo."%'";
                 $respuesta = conexion::consulta2($sql_consulta);        
                                 
                 while ($row = pg_fetch_array($respuesta)){
@@ -178,6 +178,14 @@ abstract class ManejadorPersonal{
                 throw new Exception("No existe la persona que se quiere modificar");
             }            		
 	}
+        
+        public static function borrarPersona($persona){
+            if(ManejadorPersonal::existe($persona)){
+                $persona->destruir();
+            }else{
+                throw new Exception("Esa persona no existe en la BD");
+            }
+        }
         
         public static function getPersona($id){
             if (ereg("[^A-Za-z0-9]+",$id)) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES

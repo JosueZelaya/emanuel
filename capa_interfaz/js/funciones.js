@@ -14,6 +14,9 @@ $(function (){
         $('#container').load("modificarPersona.php");    
     });
     
+    $('#eliminarPersona').click(function(){
+        $('#container').load("eliminarPersona.php");    
+    });
     
     //Funcion 2: Autocompletado en busqueda
     $('#buscar_usuario').autocomplete({
@@ -41,12 +44,92 @@ $(function (){
             tablet: 768,
             laptop: 1024
         }
+    }).on('click','.row-delete',function(e){
+          e.preventDefault();
+        //get the footable object
+        var footable = $('table').data('footable');
+
+        //get the row we are wanting to delete
+        var row = $(this).parents('tr:first');
+
+        id = $(this).attr('id');        
+        var dataString = 'id='+id;          
+        $.ajax({
+            type: "GET",
+            url: "ePersona.php",
+            data: dataString,
+            success: function(data) {                                
+                
+            }            
+        });
+        
+
+        //delete the row
+        footable.removeRow(row);
     });
+    
+    //$('table').footable().on('click', '.row-delete', function(e) {
+        
+//        e.preventDefault();
+//        //get the footable object
+//        var footable = $('table').data('footable');
+//
+//        //get the row we are wanting to delete
+//        var row = $(this).parents('tr:first');
+//
+//        //delete the row
+//        footable.removeRow(row);
+    //});
     
     
     $(document).on("click",".paginaPersonas",function(){        
         var page = $(this).attr('data');        
-        var dataString = 'pagina='+page;          
+        var dataString = 'pagina='+page+"&css_class=paginaPersonas&tipoResultado=";          
+        $.ajax({
+            type: "GET",
+            url: "contenidoTablaPersonas.php",
+            data: dataString,
+            success: function(data) {                
+                $('#mostrarUsuarios').fadeIn(1000).html(data).trigger('footable_redraw');                
+            }            
+        });
+        $.ajax({
+            type: "GET",
+            url: "paginadorTablaPersonas.php",
+            data: dataString,
+            success: function(data){
+                $('.pagination').fadeIn(1000).html(data);
+            }
+        });
+    });
+    
+    $(document).on("click",".paginaPersonasModificar",function(){        
+        var page = $(this).attr('data');        
+        var dataString = 'pagina='+page+"&css_class=paginaPersonasModificar&tipoResultado=modificarPersonas";          
+        $.ajax({
+            type: "GET",
+            url: "contenidoTablaPersonas.php",
+            data: dataString,
+            success: function(data) {                
+                $('#mostrarUsuarios').fadeIn(1000).html(data+
+                        "<script type='text/javascript' src='bootstrap/xeditable/js/bootstrap-editable.js'></script>"+
+                        "<script type='text/javascript' src='js/tabla.js'></script>"
+                        ).trigger('footable_redraw');                
+            }            
+        });
+        $.ajax({
+            type: "GET",
+            url: "paginadorTablaPersonas.php",
+            data: dataString,
+            success: function(data){
+                $('.pagination').fadeIn(1000).html(data);
+            }
+        });
+    });
+    
+    $(document).on("click",".paginaPersonasEliminar",function(){        
+        var page = $(this).attr('data');        
+        var dataString = 'pagina='+page+"&css_class=paginaPersonasEliminar&tipoResultado=eliminarPersonas";          
         $.ajax({
             type: "GET",
             url: "contenidoTablaPersonas.php",
@@ -110,6 +193,7 @@ $(function (){
                     );                                                            
                 });
                 $('#mostrarUsuarios').slideDown('fast');
+                $('.pagination').html("");
             }                        
         });
     });

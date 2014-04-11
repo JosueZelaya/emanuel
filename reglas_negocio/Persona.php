@@ -86,7 +86,8 @@ class Persona{
         }
         
 	public function destruir(){
-		
+		$consulta = "DELETE FROM personas WHERE id_persona='".$this->id."'";            
+                conexion::consulta2($consulta);
 	}
 	
 	public function guardar(){

@@ -24,13 +24,14 @@
                         <th data-hide="tiny" class="text-center">Telefono</th>
                         <th data-hide="tiny,phone,medium,tablet" class="text-left">Correo</th>                        
                         <th data-hide="tiny,phone,medium,tablet" class="text-left">Dirección</th>
-                        <th data-hide="tiny,phone,medium" class="text-left footable-last-column">Cumpleaños</th>
+                        <th data-hide="tiny,phone,medium" class="text-left">Cumpleaños</th>
+                        <th class="footable-last-column text-left">Eliminar</th>
                     </tr>
                 </thead>
                 <!--<tbody id ="mostrarUsuarios" class="mostrarUsuarios" role="alert" aria-live="polite" aria-relevant="all">-->
                 <tbody id="mostrarUsuarios" class="mostrarUsuarios">                
                     <?php 
-                    $tipoResultado = "";
+                    $tipoResultado = "eliminarPersonas";
                     require_once './contenidoTablaPersonas.php'; ?>                                   
                 </tbody>                
             </table>
@@ -39,7 +40,7 @@
                 <div class="col-xs-12">
                     <div class="dataTables_paginate paging_bootstrap">
                         <div id="paginacion">
-                                <?php $css_class="paginaPersonas"; require_once './paginadorTablaPersonas.php'; ?>
+                                <?php $css_class="paginaPersonasEliminar"; require_once './paginadorTablaPersonas.php'; ?>
                         </div>                        
                     </div>
                 </div>
@@ -50,4 +51,5 @@
         </div>        
     </div>
 
-
+<script src="bootstrap/FooTable-2/js/footable.js?v=2-0-1" type="text/javascript"></script>
+<script type="text/javascript" src="js/funciones.js"></script> 

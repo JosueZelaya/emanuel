@@ -6,7 +6,7 @@
               <ul class="dropdown-menu">
                 <li><a id="agregarPersona" class="agregarPersona" href="#" data-toggle="collapse" data-target=".barraVertical">Agregar</a></li>
                 <li><a id="modificarPersona" class="modificarPersona" href="#"  data-toggle="collapse" data-target=".barraVertical">Modificar</a></li>
-                <li><a href="#"  data-toggle="collapse" data-target=".barraVertical">Eliminar</a></li>
+                <li><a id="eliminarPersona" class="eliminarPersona" href="#"  data-toggle="collapse" data-target=".barraVertical">Eliminar</a></li>
               </ul>
           </li>
           <li class="dropdown">
