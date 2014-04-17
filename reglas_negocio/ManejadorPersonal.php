@@ -80,19 +80,38 @@ abstract class ManejadorPersonal{
             return $cantidad;            
         }
         
-        public static function buscarUsuario($buscarComo){            
+        public static function buscarUsuario($buscarComo,$campo){            
             $datos = array();
+            $usuarios = array();
             if (ereg("[^A-Za-z0-9]+",$buscarComo)) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES
 			throw new Exception("¡Nombre invalido!");	
             } else{
-                //$sql_consulta = "SELECT * FROM personas INNER JOIN miembros ON personas.id_persona=miembros.id_miembro INNER JOIN usuarios ON usuarios.id_usuario=miembros.id_miembro WHERE personas.nombres LIKE '%".$buscarComo."%' OR personas.apellidos LIKE '%".$buscarComo."%'";
-                $sql_consulta = "SELECT * FROM personas WHERE nombres ILIKE '%".$buscarComo."%' OR apellidos ILIKE '%".$buscarComo."%'";
-                $respuesta = conexion::consulta2($sql_consulta);        
-                                
-                while ($row = pg_fetch_array($respuesta)){
-                    $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"id"=>$row['id_persona'],"nombres" => $row['nombres'],"apellidos" => $row['apellidos'],"dui" => $row['dui'],"correo" => $row['correo'],"telefono"=>$row['telefono'],"direccion" => $row['direccion'],"fecha"=>$row['fecha_nacimiento']);                    
+                if($campo=="nombre_completo"){
+                    $sql_consulta = "SELECT * FROM personas WHERE nombres ILIKE '%".$buscarComo."%' OR apellidos ILIKE '%".$buscarComo."%'";                    
+                    $respuesta = conexion::consulta2($sql_consulta);   
+                    while ($row = pg_fetch_array($respuesta)){
+                        $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"id"=>$row['id_persona'],"nombres" => $row['nombres'],"apellidos" => $row['apellidos'],"dui" => $row['dui'],"correo" => $row['correo'],"telefono"=>$row['telefono'],"direccion" => $row['direccion'],"fecha"=>$row['fecha_nacimiento']);                    
+                    }
+                    return $datos;
+                }else if($campo=="fecha_nacimiento"){
+                    $sql_consulta = "SELECT * FROM personas WHERE fecha_nacimiento ILIKE '%/".$buscarComo."/%'";
+                    $respuesta = conexion::consulta2($sql_consulta);   
+                    while ($row = pg_fetch_array($respuesta)){
+                        $usuario = new Usuario();
+                        $usuario->setId($row['id_persona']);
+                        $usuario->setNombres($row['nombres']);
+                        $usuario->setApellidos($row['apellidos']);
+                        $usuario->setDUI($row['dui']);
+                        $usuario->setCorreo($row['correo']);
+                        $usuario->setTelefono($row['telefono']);
+                        $usuario->setDireccion($row['direccion']);
+                        $usuario->setFechaNacimiento($row['fecha_nacimiento']);
+                        $usuarios[] = $usuario;
+                    }
+                    return $usuarios;                    
                 }
-                return $datos;
+                    
+                
             }
             
         }
