@@ -1,17 +1,45 @@
 <div class="panel panel-default col-sm-11">
      <!--Personas que visitan la iglesia--> 
-    <div class="panel-heading" style="background: white">
+    <div class="row panel-heading" style="background: white">
     
-        <div class="input-group col-sm-4">
-          <input type="text" class="form-control" placeholder="Buscar" id="buscar_usuario" name="buscar_usuario">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-          </div>          
+        <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Buscar" id="buscar_usuario" name="buscar_usuario">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>            
+              </div>                              
+            </div> 
         </div>
+        
+        <div class="col-sm-8">
+            <div class="input-group">
+                <label for="meses" class="col-sm-5 control-label">Cumpleañeros</label>
+                <div class="col-sm-7">
+                    <select id="meses" class="form-control">
+                      <option value="0"></option>  
+                      <option value="01">Enero</option>
+                      <option value="02">Febrero</option>
+                      <option value="03">Marzo</option>
+                      <option value="04">Abril</option>
+                      <option value="05">Mayo</option>
+                      <option value="06">Junio</option>
+                      <option value="07">Julio</option>
+                      <option value="08">Agosto</option>
+                      <option value="09">Septiembre</option>
+                      <option value="10">Octubre</option>
+                      <option value="11">Noviembre</option>
+                      <option value="12">Diciembre</option>
+                    </select>
+                </div>                
+            </div>             
+        </div>
+        
         <br/>
         
     </div>
         
+     <br/>
+     
         <!--<div class="table-responsive">-->
         <div class="">
             <div id="example2_wrapper" class="dataTables_wrapper form-inline" role="grid">                

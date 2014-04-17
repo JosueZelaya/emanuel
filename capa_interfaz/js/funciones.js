@@ -151,7 +151,7 @@ $(function (){
     //Funcion 3: Autocompletado cuando el elemento se agregó después
     $(document).on("keydown.autocomplete","#buscar_usuario",function(){
          $(this).autocomplete({                    
-            source : 'autocompletarUsuario.php',
+            source : 'buscarUsuarios.php',
             select : function(event,ui){
                 $('#mostrarUsuarios').slideUp('fast',function(){                   
                     $('#mostrarUsuarios').html(
@@ -175,7 +175,7 @@ $(function (){
     //Funcion 3: Autocompletado cuando el elemento se agregó después
     $(document).on("keydown.autocomplete","#buscar_usuario_modificar",function(){
          $(this).autocomplete({                    
-            source : 'autocompletarUsuario.php',
+            source : 'buscarUsuarios.php',
             select : function(event,ui){
                 $('#mostrarUsuarios').slideUp('fast',function(){
                    $('#mostrarUsuarios').html(                    
@@ -201,7 +201,7 @@ $(function (){
     //Funcion 3: Autocompletado cuando el elemento se agregó después
     $(document).on("keydown.autocomplete","#buscar_usuario_eliminar",function(){
          $(this).autocomplete({                    
-            source : 'autocompletarUsuario.php',
+            source : 'buscarUsuarios.php',
             select : function(event,ui){
                 $('#mostrarUsuarios').slideUp('fast',function(){
                    $('#mostrarUsuarios').html(                    
@@ -221,6 +221,25 @@ $(function (){
                 $('.pagination').html("");
             }                        
         });
+    });
+    
+    $(document).on("click","#meses",function(){        
+        var mes = $(this).val();
+        if(mes!=="0"){
+            var dataString = 'mes='+mes;
+            $.ajax({
+                type: "GET",
+                url: "buscarUsuarios.php",
+                data: dataString,
+                success: function(data){                
+                    $('#mostrarUsuarios').slideUp('fast',function(){
+                        $('#mostrarUsuarios').html(data);                
+                    });
+                    $('#mostrarUsuarios').slideDown('fast');
+                    $('.pagination').html("");                
+                }
+            });    
+        }
     });
     
     
