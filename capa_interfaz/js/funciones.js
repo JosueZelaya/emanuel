@@ -215,7 +215,7 @@ $(function (){
                     "<td data-hide='tiny,phone,medium' class='footable-last-column'>"+ui.item.fecha+"</td>"+
                     "<td class='footable-last-column text-center'><a id='"+ui.item.id+"' class='row-delete'><span class='glyphicon glyphicon-remove'></span></a></td>"+
                     "</tr>"
-                    );                                                            
+                    ).trigger('footable_redraw');                                                            
                 });
                 $('#mostrarUsuarios').slideDown('fast');
                 $('.pagination').html("");
@@ -233,7 +233,7 @@ $(function (){
                 data: dataString,
                 success: function(data){                
                     $('#mostrarUsuarios').slideUp('fast',function(){
-                        $('#mostrarUsuarios').html(data);                
+                        $('#mostrarUsuarios').html(data).trigger('footable_redraw');                
                     });
                     $('#mostrarUsuarios').slideDown('fast');
                     $('.pagination').html("");                
