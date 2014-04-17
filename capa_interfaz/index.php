@@ -33,7 +33,7 @@ ManejadorSesion::sec_session_start();
     
         
     <!-- Carousel -->    
-    <?php //include 'carrusel.php';?>
+    <?php include 'carrusel.php';?>
 
 
     <!-- Mensajes Marketing -->    

@@ -3,7 +3,7 @@
     <div class="panel-heading" style="background: white">
     
         <div class="input-group col-sm-4">
-          <input type="text" class="form-control" placeholder="Buscar" id="buscar_usuario" name="buscar_usuario">
+          <input type="text" class="form-control" placeholder="Buscar" id="buscar_usuario_eliminar" name="buscar_usuario_eliminar">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
           </div>          

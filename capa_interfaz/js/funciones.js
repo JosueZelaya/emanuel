@@ -198,6 +198,31 @@ $(function (){
         });
     });
     
+    //Funcion 3: Autocompletado cuando el elemento se agregó después
+    $(document).on("keydown.autocomplete","#buscar_usuario_eliminar",function(){
+         $(this).autocomplete({                    
+            source : 'autocompletarUsuario.php',
+            select : function(event,ui){
+                $('#mostrarUsuarios').slideUp('fast',function(){
+                   $('#mostrarUsuarios').html(                    
+                   "<tr>"+
+                    "<td data-toggle='true' class='footable-first-column'><span class='footable-toogle'></span>"+ui.item.nombres+"</td>"+
+                    "<td>"+ui.item.apellidos+"</td>"+
+                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.dui+"</td>"+
+                    "<td data-hide='tiny'>"+ui.item.telefono+"</td>"+
+                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.correo+"</td>"+                    
+                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.direccion+"</td>"+
+                    "<td data-hide='tiny,phone,medium' class='footable-last-column'>"+ui.item.fecha+"</td>"+
+                    "<td class='footable-last-column text-center'><a id='"+ui.item.id+"' class='row-delete'><span class='glyphicon glyphicon-remove'></span></a></td>"+
+                    "</tr>"
+                    );                                                            
+                });
+                $('#mostrarUsuarios').slideDown('fast');
+                $('.pagination').html("");
+            }                        
+        });
+    });
+    
     
     $('#barraPrincipal').on('shown.bs.collapse', function () {        
         $("#spanBP").removeClass("glyphicon-plus").addClass("glyphicon-minus");
