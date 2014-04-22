@@ -32,6 +32,34 @@ abstract class ManejadorPersonal{
 		}		
 	}
         
+        public static function getUsuarioPorId($id){
+		if (ereg("[^A-Za-z0-9]+",$id)) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES
+			throw new Exception("¡Login Inválido!");	
+		} 
+		else{
+                        $sql_consulta = "SELECT * FROM usuarios INNER JOIN personas ON id_usuario=id_persona WHERE id_usuario='".$id."'";
+			$respuesta = conexion::consulta($sql_consulta);
+			$usuario = new Usuario();
+                        $usuario->setId($respuesta['id_usuario']);
+                        $usuario->setlogin($respuesta['login']);
+                        //Si el password no está encriptado en la base de datos se encripta acá
+                        //Borrar la siguiente línea si el password ya está encriptado en la BD
+                        //$password = hash('sha512',$respuesta['password']);                        
+			//$usuario->setPassword($password);
+                        $usuario->setPassword($respuesta['password']);
+			$usuario->setHabilitado($respuesta['habilitado']);
+                        $usuario->setNombres($respuesta['nombres']);
+                        $usuario->setApellidos($respuesta['apellidos']);
+                        $usuario->setCorreo($respuesta['correo']);
+                        $usuario->setTelefono($respuesta['telefono']);
+                        $usuario->setDireccion($respuesta['direccion']);
+                        $usuario->setFechaNacimiento($respuesta['fecha_nacimiento']);
+                        $usuario->setFechaConversion($respuesta['fecha_conversion']);
+                        $usuario->setFechaBautismo($respuesta['fecha_bautismo']);			
+			return $usuario;
+		}		
+	}
+        
         public static function getTodasPersonas(){
                         $miembros = array();
                         $sql_consulta = "SELECT * FROM personas ORDER BY nombres";
@@ -196,6 +224,18 @@ abstract class ManejadorPersonal{
             if(ManejadorPersonal::existe($actual)){
                 if(ManejadorPersonal::existePersona($nueva->getId())){
                     $nueva->guardar();  //Se guarda la persona
+                }else{
+                    throw new Exception("No existe la persona que se quiere modificar");
+                }                
+            }else{
+                throw new Exception("No existe la persona que se quiere modificar");
+            }            		
+	}
+        
+        public static function modificarUsuario($actual,$nueva){            
+            if(ManejadorPersonal::existe($actual)){
+                if(ManejadorPersonal::existePersona($nueva->getId())){
+                    $nueva->guardarUsuario();  //Se guarda la persona
                 }else{
                     throw new Exception("No existe la persona que se quiere modificar");
                 }                

@@ -65,7 +65,24 @@ class Usuario extends Miembro{
 	public function setHabilitado($habilitado){
 		$this->habilitado = $habilitado;
 	}
-	
+        
+        public function guardarUsuario(){
+            $consulta = "UPDATE personas SET nombres='".$this->getNombres()."',"
+                    . "apellidos='".$this->getApellidos()."',"                    
+                    . "correo='".$this->getCorreo()."',"
+                    . "telefono='".$this->getTelefono()."',"
+                    . "direccion='".$this->getDireccion()."',"
+                    . "fecha_nacimiento='".$this->getFechaNacimiento()."',"
+                    . "fecha_conversion='".$this->getFechaConversion()."',"
+                    . "fecha_bautismo='".$this->getFechaBautismo()."'"
+                    . " WHERE id_persona='".$this->getId()."'";            
+                conexion::consulta2($consulta);
+            $consulta = "UPDATE usuarios SET login='".$this->getLogin()."',"
+                . "password='".$this->getPassword()."'"                                   
+                . " WHERE id_usuario='".$this->getId()."'";            
+            conexion::consulta2($consulta);
+	}
+        
 }
 
 ?>

@@ -18,6 +18,10 @@ $(function (){
         $('#container').load("eliminarPersona.php");    
     });
     
+    $('#miInfo').click(function(){
+        $('#container').load("miInfo.php");    
+    });
+    
     //Funcion 2: Autocompletado en busqueda
     $('#buscar_usuario').autocomplete({
             source : 'autocompletarUsuario.php',

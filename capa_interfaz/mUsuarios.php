@@ -14,10 +14,10 @@ if($_POST){
         $campo = $_POST['name'];
         $valor = $_POST['value'];
         
-        $personaActual = new Miembro();
-        $personaActual = ManejadorPersonal::getPersona($id);
+        $personaActual = new Usuario();
+        $personaActual = ManejadorPersonal::getUsuarioPorId($id);
         
-        $personaNueva = new Miembro();
+        $personaNueva = new Usuario();
         $personaNueva->setId($personaActual->getId());
         $personaNueva->setNombres($personaActual->getNombres());
         $personaNueva->setApellidos($personaActual->getApellidos());        
@@ -27,6 +27,8 @@ if($_POST){
         $personaNueva->setFechaNacimiento($personaActual->getFechaNacimiento());
         $personaNueva->setFechaConversion($personaActual->getFechaConversion());
         $personaNueva->setFechaBautismo($personaActual->getFechaBautismo());
+        $personaNueva->setLogin($personaActual->getLogin());
+        $personaNueva->setPassword($personaActual->getPassword());
         
         switch ($campo) {
             case "nombres":
@@ -56,12 +58,18 @@ if($_POST){
             case "bautismo":
                 $personaNueva->setFechaBautismo($valor);
                 break;
+            case "login":
+                $personaNueva->setLogin($valor);
+                break;
+            case "password":
+                $personaNueva->setPassword($valor);
+                break;
             default:
                 break;
         }
         
         try{
-            ManejadorPersonal::modificarPersona($personaActual, $personaNueva);
+            ManejadorPersonal::modificarUsuario($personaActual, $personaNueva);
             $respuesta = array('status'=>'ok','msg'=>'¡Persona Modificada!');
             print json_encode($respuesta);
         }catch(Exception $ex){
