@@ -92,8 +92,7 @@ class Persona{
 	
 	public function guardar(){
 		$consulta = "UPDATE personas SET nombres='".$this->getNombres()."',"
-                    . "apellidos='".$this->getApellidos()."',"
-                    . "dui='".$this->getDUI()."',"
+                    . "apellidos='".$this->getApellidos()."',"                    
                     . "correo='".$this->getCorreo()."',"
                     . "telefono='".$this->getTelefono()."',"
                     . "direccion='".$this->getDireccion()."',"

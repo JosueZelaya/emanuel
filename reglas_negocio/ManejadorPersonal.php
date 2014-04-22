@@ -10,7 +10,7 @@ abstract class ManejadorPersonal{
 			throw new Exception("¡Login Inválido!");	
 		} 
 		else{
-                        $sql_consulta = "SELECT * FROM usuarios INNER JOIN miembros ON id_usuario=id_miembro INNER JOIN personas ON id_miembro=id_persona WHERE login='".$login."'";
+                        $sql_consulta = "SELECT * FROM usuarios INNER JOIN personas ON id_usuario=id_persona WHERE login='".$login."'";
 			$respuesta = conexion::consulta($sql_consulta);
 			$usuario = new Usuario();
                         $usuario->setId($respuesta['id_usuario']);
@@ -26,51 +26,54 @@ abstract class ManejadorPersonal{
                         $usuario->setTelefono($respuesta['telefono']);
                         $usuario->setDireccion($respuesta['direccion']);
                         $usuario->setFechaNacimiento($respuesta['fecha_nacimiento']);
-                        $usuario->setFechaNuevoNacimiento($respuesta['fecha_nuevo_nacimiento']);
+                        $usuario->setFechaConversion($respuesta['fecha_conversion']);
                         $usuario->setFechaBautismo($respuesta['fecha_bautismo']);			
 			return $usuario;
 		}		
 	}
         
         public static function getTodasPersonas(){
-                        $usuarios = array();
+                        $miembros = array();
                         $sql_consulta = "SELECT * FROM personas ORDER BY nombres";
 			$respuesta = conexion::consulta2($sql_consulta);
                         
                         while ($row = pg_fetch_array($respuesta)){
-                            $usuario = new Usuario();
-                            $usuario->setId($row['id_persona']);
-                            $usuario->setNombres($row['nombres']);
-                            $usuario->setApellidos($row['apellidos']);
-                            $usuario->setDUI($row['dui']);
-                            $usuario->setCorreo($row['correo']);
-                            $usuario->setTelefono($row['telefono']);
-                            $usuario->setDireccion($row['direccion']);
-                            $usuario->setFechaNacimiento($row['fecha_nacimiento']);
-                            $usuarios[] = $usuario;
+                            $miembro = new Miembro();
+                            $miembro->setId($row['id_persona']);
+                            $miembro->setNombres($row['nombres']);
+                            $miembro->setApellidos($row['apellidos']);                            
+                            $miembro->setTelefono($row['telefono']);
+                            $miembro->setCorreo($row['correo']);                            
+                            $miembro->setDireccion($row['direccion']);
+                            $miembro->setFechaNacimiento($row['fecha_nacimiento']);
+                            $miembro->setFechaConversion($row['fecha_conversion']);
+                            $miembro->setFechaBautismo($row['fecha_bautismo']);                            
+                            $miembros[] = $miembro;
                         }                   			
-			return $usuarios;
+			return $miembros;
         }
         
         public static function getTodasPersonasConPaginacion($pagina,$numeroResultados){
-                        $usuarios = array();
+                        $miembros = array();
                         $pagina = ($pagina-1)*$numeroResultados;
                         $sql_consulta = "SELECT * FROM personas ORDER BY nombres LIMIT ".$numeroResultados." OFFSET ".$pagina;
 			$respuesta = conexion::consulta2($sql_consulta);
                         
                         while ($row = pg_fetch_array($respuesta)){
-                            $usuario = new Usuario();
-                            $usuario->setId($row['id_persona']);
-                            $usuario->setNombres($row['nombres']);
-                            $usuario->setApellidos($row['apellidos']);
-                            $usuario->setDUI($row['dui']);
-                            $usuario->setCorreo($row['correo']);
-                            $usuario->setTelefono($row['telefono']);
-                            $usuario->setDireccion($row['direccion']);
-                            $usuario->setFechaNacimiento($row['fecha_nacimiento']);
-                            $usuarios[] = $usuario;
+                            $miembro = new Miembro();
+                            $miembro->setId($row['id_persona']);
+                            $miembro->setNombres($row['nombres']);
+                            $miembro->setApellidos($row['apellidos']);
+                            $miembro->setTelefono($row['telefono']);
+                            $miembro->setCorreo($row['correo']);                            
+                            $miembro->setDireccion($row['direccion']);
+                            //$miembro->setFechaNacimiento($row['fecha_nacimiento']);
+                            $miembro->setFechaNacimiento(date("d-m-Y", strtotime($row['fecha_nacimiento'])));
+                            $miembro->setFechaConversion(date("d-m-Y", strtotime($row['fecha_conversion'])));
+                            $miembro->setFechaBautismo(date("d-m-Y", strtotime($row['fecha_bautismo'])));
+                            $miembros[] = $miembro;
                         }                   			
-			return $usuarios;
+			return $miembros;
         }
         
         public static function getCuantasPersonasExisten(){            
@@ -82,7 +85,7 @@ abstract class ManejadorPersonal{
         
         public static function buscarUsuario($buscarComo,$campo){            
             $datos = array();
-            $usuarios = array();
+            $miembros = array();
             if (ereg("[^A-Za-z0-9]+",$buscarComo)) {	//EVITAR QUE EN EL LOGIN APAREZCAN CARACTERES ESPECIALES
 			throw new Exception("¡Nombre invalido!");	
             } else{
@@ -90,25 +93,27 @@ abstract class ManejadorPersonal{
                     $sql_consulta = "SELECT * FROM personas WHERE nombres ILIKE '%".$buscarComo."%' OR apellidos ILIKE '%".$buscarComo."%'";                    
                     $respuesta = conexion::consulta2($sql_consulta);   
                     while ($row = pg_fetch_array($respuesta)){
-                        $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"id"=>$row['id_persona'],"nombres" => $row['nombres'],"apellidos" => $row['apellidos'],"dui" => $row['dui'],"correo" => $row['correo'],"telefono"=>$row['telefono'],"direccion" => $row['direccion'],"fecha"=>$row['fecha_nacimiento']);                    
+                        $datos[] = array("value"=> $row['nombres']." ".$row['apellidos'],"id"=>$row['id_persona'],"nombres" => $row['nombres'],"apellidos" => $row['apellidos'],"correo" => $row['correo'],"telefono"=>$row['telefono'],"direccion" => $row['direccion'],"fecha_nacimiento"=>date("d-m-Y", strtotime($row['fecha_nacimiento'])),"fecha_conversion"=>date("d-m-Y", strtotime($row['fecha_conversion'])),"fecha_bautismo"=>date("d-m-Y", strtotime($row['fecha_bautismo'])));                    
                     }
                     return $datos;
                 }else if($campo=="fecha_nacimiento"){
-                    $sql_consulta = "SELECT * FROM personas WHERE fecha_nacimiento ILIKE '%/".$buscarComo."/%'";
+                    //$sql_consulta = "SELECT * FROM personas WHERE fecha_nacimiento ILIKE '%/".$buscarComo."/%'";
+                    $sql_consulta = "SELECT * FROM personas WHERE EXTRACT(MONTH FROM fecha_nacimiento) = ".$buscarComo;
                     $respuesta = conexion::consulta2($sql_consulta);   
                     while ($row = pg_fetch_array($respuesta)){
-                        $usuario = new Usuario();
-                        $usuario->setId($row['id_persona']);
-                        $usuario->setNombres($row['nombres']);
-                        $usuario->setApellidos($row['apellidos']);
-                        $usuario->setDUI($row['dui']);
-                        $usuario->setCorreo($row['correo']);
-                        $usuario->setTelefono($row['telefono']);
-                        $usuario->setDireccion($row['direccion']);
-                        $usuario->setFechaNacimiento($row['fecha_nacimiento']);
-                        $usuarios[] = $usuario;
+                        $miembro = new Miembro();
+                        $miembro->setId($row['id_persona']);
+                        $miembro->setNombres($row['nombres']);
+                        $miembro->setApellidos($row['apellidos']);                        
+                        $miembro->setCorreo($row['correo']);
+                        $miembro->setTelefono($row['telefono']);
+                        $miembro->setDireccion($row['direccion']);
+                        $miembro->setFechaNacimiento(date("d-m-Y", strtotime($row['fecha_nacimiento'])));
+                        $miembro->setFechaConversion(date("d-m-Y", strtotime($row['fecha_conversion'])));
+                        $miembro->setFechaBautismo(date("d-m-Y", strtotime($row['fecha_bautismo'])));
+                        $miembros[] = $miembro;
                     }
-                    return $usuarios;                    
+                    return $miembros;                    
                 }
                     
                 
@@ -137,14 +142,15 @@ abstract class ManejadorPersonal{
                     throw new Exception("La persona ya ha sido agregada anteriormente");
                 }else{
                     if($persona->getNombres()!=="" && $persona->getApellidos()!==""){
-                        $consulta = "INSERT INTO personas (nombres,apellidos,dui,correo,telefono,direccion,fecha_nacimiento) VALUES ('".
+                        $consulta = "INSERT INTO personas (nombres,apellidos, correo,telefono,direccion,fecha_nacimiento,fecha_conversion,fecha_bautismo) VALUES ('".
                                 $persona->getNombres()."','".
-                                $persona->getApellidos()."','".
-                                $persona->getDUI()."','".
+                                $persona->getApellidos()."','".                                
                                 $persona->getCorreo()."','".
                                 $persona->getTelefono()."','".
                                 $persona->getDireccion()."','".
-                                $persona->getFechaNacimiento()."')";
+                                $persona->getFechaNacimiento()."','".
+                                $persona->getFechaConversion()."','".
+                                $persona->getFechaBautismo()."')";
                         conexion::consulta2($consulta);
                     }else{
                         throw new Exception("No se puede agregar a la persona si le falta el nombre o apellido");
@@ -213,16 +219,17 @@ abstract class ManejadorPersonal{
 		else{
                         $sql_consulta = "SELECT * FROM personas WHERE id_persona='".$id."'";
 			$respuesta = conexion::consulta($sql_consulta);
-			$persona = new Persona();
-                        $persona->setId($respuesta['id_persona']);
-                        $persona->setNombres($respuesta['nombres']);
-                        $persona->setApellidos($respuesta['apellidos']);
-                        $persona->setDUI($respuesta['dui']);
-                        $persona->setCorreo($respuesta['correo']);
-                        $persona->setTelefono($respuesta['telefono']);
-                        $persona->setDireccion($respuesta['direccion']);
-                        $persona->setFechaNacimiento($respuesta['fecha_nacimiento']);			
-			return $persona;
+			$miembro = new Miembro();
+                        $miembro->setId($respuesta['id_persona']);
+                        $miembro->setNombres($respuesta['nombres']);
+                        $miembro->setApellidos($respuesta['apellidos']);                        
+                        $miembro->setCorreo($respuesta['correo']);
+                        $miembro->setTelefono($respuesta['telefono']);
+                        $miembro->setDireccion($respuesta['direccion']);
+                        $miembro->setFechaNacimiento(date("d-m-Y", strtotime($respuesta['fecha_nacimiento'])));			
+                        $miembro->setFechaConversion(date("d-m-Y", strtotime($respuesta['fecha_conversion'])));
+                        $miembro->setFechaBautismo(date("d-m-Y", strtotime($respuesta['fecha_bautismo'])));
+			return $miembro;
 		}            
         }
         

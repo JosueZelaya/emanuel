@@ -27,7 +27,7 @@ $(function (){
                     "detalles usuario</h2><br/>"+
                     'nombre: '+ui.item.value+'<br/>'+                       
                     'telefono: '+ui.item.telefono+'<br/>'+
-                    'fecha de nacimiento: '+ui.item.fecha
+                    'fecha de nacimiento: '+ui.item.fecha_nacimiento
 
                     );                                                            
                 });
@@ -53,7 +53,8 @@ $(function (){
         var row = $(this).parents('tr:first');
 
         id = $(this).attr('id');        
-        var dataString = 'id='+id;          
+        var dataString = 'id='+id;                  
+        
         $.ajax({
             type: "GET",
             url: "ePersona.php",
@@ -158,11 +159,12 @@ $(function (){
                     "<tr>"+
                     "<td data-toggle='true' class='footable-first-column'><span class='footable-toogle'></span>"+ui.item.nombres+"</td>"+
                     "<td>"+ui.item.apellidos+"</td>"+
-                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.dui+"</td>"+
+                    "<td data-hide='tiny,phone,medium' class='footable-last-column'>"+ui.item.fecha_nacimiento+"</td>"+
+                    "<td data-hide='tiny,phone,medium,tablet' class='footable-last-column'>"+ui.item.fecha_conversion+"</td>"+ 
+                    "<td data-hide='tiny,phone,medium,tablet' class='footable-last-column'>"+ui.item.fecha_bautismo+"</td>"+ 
                     "<td data-hide='tiny'>"+ui.item.telefono+"</td>"+
                     "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.correo+"</td>"+                    
-                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.direccion+"</td>"+
-                    "<td data-hide='tiny,phone,medium' class='footable-last-column'>"+ui.item.fecha+"</td>"+
+                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.direccion+"</td>"+                    
                     "</tr>"
                     ).trigger('footable_redraw');                    
                 });
@@ -182,11 +184,12 @@ $(function (){
                     "<tr>"+
                     "<td><div style='cursor: pointer;' id='nombres' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Nombre'>"+ui.item.nombres+"</div></td>"+
                     "<td><div style='cursor: pointer;' id='apellidos' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Apellidos'>"+ui.item.apellidos+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='dui' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese DUI'>"+ui.item.dui+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='correo' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Correo'>"+ui.item.correo+"</div></td>"+
+                    "<td><div style='cursor: pointer;' href='#' id='nacimiento' class='fechaEditable' data-type='date' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Fecha Nacimiento'>"+ui.item.fecha_nacimiento+"</div></td>"+                    
+                    "<td><div style='cursor: pointer;' href='#' id='conversion' class='fechaEditable' data-type='date' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Fecha Conversion'>"+ui.item.fecha_conversion+"</div></td>"+
+                    "<td><div style='cursor: pointer;' href='#' id='bautismo' class='fechaEditable' data-type='date' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Fecha Bautismo'>"+ui.item.fecha_bautismo+"</div></td>"+
                     "<td><div style='cursor: pointer;' id='telefono' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Telefono'>"+ui.item.telefono+"</div></td>"+
-                    "<td><div style='cursor: pointer;' id='direccion' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Dirección'>"+ui.item.direccion+"</div></td>"+
-                    "<td><div style='cursor: pointer;' href='#' id='nacimiento' class='fechaEditable' data-type='date' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Fecha Nacimiento'>"+ui.item.fecha+"</div></td>"+
+                    "<td><div style='cursor: pointer;' id='correo' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Correo'>"+ui.item.correo+"</div></td>"+
+                    "<td><div style='cursor: pointer;' id='direccion' class='campoModificable' data-type='text' data-placement='bottom' data-pk="+ui.item.id+" data-url='mPersonas.php' data-title='Ingrese Dirección'>"+ui.item.direccion+"</div></td>"+                                        
                     "</tr>"+
                     "<script type='text/javascript' src='bootstrap/xeditable/js/bootstrap-editable.js'></script>"+
                     "<script type='text/javascript' src='js/tabla.js'></script>"
@@ -208,11 +211,12 @@ $(function (){
                    "<tr>"+
                     "<td data-toggle='true' class='footable-first-column'><span class='footable-toogle'></span>"+ui.item.nombres+"</td>"+
                     "<td>"+ui.item.apellidos+"</td>"+
-                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.dui+"</td>"+
+                    "<td data-hide='tiny,phone,medium' class=''>"+ui.item.fecha_nacimiento+"</td>"+
+                    "<td data-hide='tiny,phone,medium,tablet' class=''>"+ui.item.fecha_conversion+"</td>"+ 
+                    "<td data-hide='tiny,phone,medium,tablet' class=''>"+ui.item.fecha_bautismo+"</td>"+ 
                     "<td data-hide='tiny'>"+ui.item.telefono+"</td>"+
                     "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.correo+"</td>"+                    
-                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.direccion+"</td>"+
-                    "<td data-hide='tiny,phone,medium' class='footable-last-column'>"+ui.item.fecha+"</td>"+
+                    "<td data-hide='tiny,phone,medium,tablet'>"+ui.item.direccion+"</td>"+                    
                     "<td class='footable-last-column text-center'><a id='"+ui.item.id+"' class='row-delete'><span class='glyphicon glyphicon-remove'></span></a></td>"+
                     "</tr>"
                     ).trigger('footable_redraw');                                                            

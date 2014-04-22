@@ -17,11 +17,12 @@ if (ManejadorSesion::comprobar_sesion() == true){
             echo "<tr>".
                  "<td class='footable-first-column text-left'><span class='footable-toogle'></span>".$personas[$index]->getNombres()."</td>".   
                  "<td class='text-left'>".$personas[$index]->getApellidos()."</td>".
-                 "<td class='text-left'>".$personas[$index]->getDUI()."</td>".
+                 "<td class='text-left'>".$personas[$index]->getFechaNacimiento()."</td>".
+                 "<td class='text-left'>".$personas[$index]->getFechaConversion()."</td>".
+                 "<td class='text-left'>".$personas[$index]->getFechaBautismo()."</td>".   
                  "<td class='text-left'>".$personas[$index]->getTelefono()."</td>".   
                  "<td class='text-left'>".$personas[$index]->getCorreo()."</td>".         
-                 "<td class='text-left'>".$personas[$index]->getDireccion()."</td>".
-                 "<td class='footable-last-column text-left'>".$personas[$index]->getFechaNacimiento()."</td>".   
+                 "<td class='footable-last-column text-left'>".$personas[$index]->getDireccion()."</td>".                 
                  "</tr>";
             }
         }

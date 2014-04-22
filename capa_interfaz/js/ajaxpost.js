@@ -104,7 +104,7 @@ $(".formulario").keydown(function (){
 });
 
 $(function() {
-    $( "#datepicker" ).pickadate({
+    $( ".datepicker" ).pickadate({
         min: new Date(1900,1,1), //Limita la fecha mínima al año 1900
         max: true,               //Limita la fecha máxima al día de hoy
         selectYears: 80,         //Despliega un menu con un tamaño de 80 años

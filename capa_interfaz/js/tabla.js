@@ -16,8 +16,9 @@ $(document).ready(function() {
     });  
     
    $('.fechaEditable').editable({
-       format: 'dd/mm/yyyy',    
-       viewformat: 'dd/mm/yyyy',       
+//       format: 'dd/mm/yyyy',
+       formatSubmit: 'mm-dd-yyyy',
+       viewformat: 'dd-mm-yyyy',       
         datepicker: {
              weekStart: 1            
             

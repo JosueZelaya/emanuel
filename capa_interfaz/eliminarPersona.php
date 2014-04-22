@@ -20,11 +20,12 @@
                     <tr>
                         <th data-toggle="true" class="text-left footable-first-column">Nombres</th>
                         <th class="text-left">Apellidos</th>
-                        <th data-hide="tiny,phone,medium,tablet,laptop" class="text-left">DUI</th>
-                        <th data-hide="tiny" class="text-center">Telefono</th>
-                        <th data-hide="tiny,phone,medium,tablet" class="text-left">Correo</th>                        
-                        <th data-hide="tiny,phone,medium,tablet" class="text-left">Dirección</th>
                         <th data-hide="tiny,phone,medium" class="text-left">Cumpleaños</th>
+                        <th data-hide="tiny,phone,medium,tablet" class="text-left">Conversion</th>
+                        <th data-hide="tiny,phone,medium,tablet" class="text-left">Bautismo</th> 
+                        <th data-hide="tiny" class="text-center">Telefono</th>
+                        <th data-hide="tiny,phone,medium,tablet,laptop" class="text-left">Correo</th>                        
+                        <th data-hide="tiny,phone,medium,tablet,laptop" class="text-left">Dirección</th>                        
                         <th class="footable-last-column text-left">Eliminar</th>
                     </tr>
                 </thead>

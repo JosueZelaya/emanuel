@@ -8,23 +8,25 @@ if($_POST){
 
         require_once '../reglas_negocio/ManejadorPersonal.php';
         require_once '../reglas_negocio/Persona.php';
+        require_once '../reglas_negocio/Miembro.php';
 
         $id = $_POST['pk'];
         $campo = $_POST['name'];
         $valor = $_POST['value'];
         
-        $personaActual = new Persona();
+        $personaActual = new Miembro();
         $personaActual = ManejadorPersonal::getPersona($id);
         
-        $personaNueva = new Persona();
+        $personaNueva = new Miembro();
         $personaNueva->setId($personaActual->getId());
         $personaNueva->setNombres($personaActual->getNombres());
-        $personaNueva->setApellidos($personaActual->getApellidos());
-        $personaNueva->setDUI($personaActual->getDUI());
+        $personaNueva->setApellidos($personaActual->getApellidos());        
         $personaNueva->setCorreo($personaActual->getCorreo());
         $personaNueva->setTelefono($personaActual->getTelefono());
         $personaNueva->setDireccion($personaActual->getDireccion());
         $personaNueva->setFechaNacimiento($personaActual->getFechaNacimiento());
+        $personaNueva->setFechaConversion($personaActual->getFechaConversion());
+        $personaNueva->setFechaBautismo($personaActual->getFechaBautismo());
         
         switch ($campo) {
             case "nombres":
@@ -47,7 +49,13 @@ if($_POST){
                 break;
             case "nacimiento":
                 $personaNueva->setFechaNacimiento($valor);
-                break; 
+                break;
+            case "conversion":
+                $personaNueva->setFechaConversion($valor);
+                break;
+            case "bautismo":
+                $personaNueva->setFechaBautismo($valor);
+                break;
             default:
                 break;
         }

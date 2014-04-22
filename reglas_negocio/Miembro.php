@@ -4,21 +4,21 @@ require_once 'Persona.php';
 
 class Miembro extends Persona{
 	
-	private $fechaNuevoNacimiento;
+	private $fechaConversion;
 	private $fechaBautismo;
 	private $dones;
 	private $roles;
         
         public function __construct() {
             parent::__construct();
-            $this->fechaNuevoNacimiento="";
+            $this->fechaConversion="";
             $this->fechaBautismo="";
             $this->dones="";
             $this->roles="";
         }
         
-        public function getFechaNuevoNacimiento(){
-            return $this->fechaNuevoNacimiento;
+        public function getFechaConversion(){
+            return $this->fechaConversion;
         }
         
         public function getFechaBautismo(){
@@ -33,8 +33,8 @@ class Miembro extends Persona{
             return $this->roles;
         }
         
-        public function setFechaNuevoNacimiento($fecha){
-            $this->fechaNuevoNacimiento = $fecha;
+        public function setFechaConversion($fecha){
+            $this->fechaConversion = $fecha;
         }
         
         public function setFechaBautismo($fecha){
@@ -58,12 +58,21 @@ class Miembro extends Persona{
 	}
 	
 	public function guardar(){
-		
+		$consulta = "UPDATE personas SET nombres='".$this->getNombres()."',"
+                    . "apellidos='".$this->getApellidos()."',"                    
+                    . "correo='".$this->getCorreo()."',"
+                    . "telefono='".$this->getTelefono()."',"
+                    . "direccion='".$this->getDireccion()."',"
+                    . "fecha_nacimiento='".$this->getFechaNacimiento()."',"
+                    . "fecha_conversion='".$this->getFechaConversion()."',"
+                    . "fecha_bautismo='".$this->getFechaBautismo()."'"
+                    . " WHERE id_persona='".$this->getId()."'";            
+                conexion::consulta2($consulta);
 	}
 	
-	public function destruir(){
-		
-	}
+//	public function destruir(){
+//		
+//	}
 	
 }
 

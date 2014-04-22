@@ -21,13 +21,7 @@ if (ManejadorSesion::comprobar_sesion() == true) : ?>
                 <div class="col-lg-4">
                     <input type="text" id="apellidos" name="apellidos" class="form-control formulario" placeholder="El Bautista" required/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="dui" class="col-lg-2 control-label">DUI o Cédula</label>
-                <div class="col-lg-4">
-                    <input type="text" id="dui" name="dui" class="form-control" placeholder="21921021-2"/>
-                </div>
-            </div>
+            </div>            
             <div class="form-group">
                 <label for="correo" class="col-lg-2 control-label">Correo</label>
                 <div class="col-lg-4">
@@ -50,7 +44,21 @@ if (ManejadorSesion::comprobar_sesion() == true) : ?>
                 <label for="nacimiento" class="col-lg-2 control-label">Fecha de Nacimiento</label>
                 <div class="col-lg-4">
                     <!--<input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Col El Buen Vecino"/>-->                    
-                        <input id="datepicker" name="nacimiento" data-value="01/01/2014" class="form-control span2" size="16" type="text" readonly="">                        
+                        <input id="datepicker" name="nacimiento" data-value="01/01/2014" class="datepicker form-control span2" size="16" type="text" readonly="">                        
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="conversion" class="col-lg-2 control-label">Fecha de Conversion</label>
+                <div class="col-lg-4">
+                    <!--<input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Col El Buen Vecino"/>-->                    
+                        <input id="datepicker" name="conversion" data-value="" class="datepicker form-control span2" size="16" type="text" readonly="">                        
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bautismo" class="col-lg-2 control-label">Fecha de Bautismo</label>
+                <div class="col-lg-4">
+                    <!--<input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Col El Buen Vecino"/>-->                    
+                        <input id="datepicker" name="bautismo" data-value="" class="datepicker form-control span2" size="16" type="text" readonly="">                        
                 </div>
             </div>
         </div>
