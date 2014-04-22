@@ -1,0 +1,149 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'SQL_ASCII';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: basedatosiglesia; Type: SCHEMA; Schema: -; Owner: basedatosiglesia
+--
+
+CREATE SCHEMA basedatosiglesia;
+
+
+ALTER SCHEMA basedatosiglesia OWNER TO basedatosiglesia;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = basedatosiglesia, pg_catalog;
+
+--
+-- Name: secuencia_id_persona; Type: SEQUENCE; Schema: basedatosiglesia; Owner: basedatosiglesia
+--
+
+CREATE SEQUENCE secuencia_id_persona
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE basedatosiglesia.secuencia_id_persona OWNER TO basedatosiglesia;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: personas; Type: TABLE; Schema: basedatosiglesia; Owner: basedatosiglesia; Tablespace: 
+--
+
+CREATE TABLE personas (
+    id_persona integer DEFAULT nextval('secuencia_id_persona'::regclass) NOT NULL,
+    nombres character varying(30) NOT NULL,
+    apellidos character varying(35) NOT NULL,
+    telefono character varying(15),
+    correo character varying(60),
+    direccion character varying(150),
+    fecha_nacimiento date,
+    fecha_conversion date,
+    fecha_bautismo date
+);
+
+
+ALTER TABLE basedatosiglesia.personas OWNER TO basedatosiglesia;
+
+--
+-- Name: usuarios; Type: TABLE; Schema: basedatosiglesia; Owner: basedatosiglesia; Tablespace: 
+--
+
+CREATE TABLE usuarios (
+    login character varying(25) NOT NULL,
+    password character varying(512) NOT NULL,
+    habilitado boolean NOT NULL,
+    id_usuario integer NOT NULL
+);
+
+
+ALTER TABLE basedatosiglesia.usuarios OWNER TO basedatosiglesia;
+
+--
+-- Data for Name: personas; Type: TABLE DATA; Schema: basedatosiglesia; Owner: basedatosiglesia
+--
+
+COPY personas (id_persona, nombres, apellidos, telefono, correo, direccion, fecha_nacimiento, fecha_conversion, fecha_bautismo) FROM stdin;
+1	defalut	admin	12345678	default@admin.com	Santa Ana, El Salvador	2014-04-05	1969-12-31	1969-12-31
+\.
+
+
+--
+-- Name: secuencia_id_persona; Type: SEQUENCE SET; Schema: basedatosiglesia; Owner: basedatosiglesia
+--
+
+SELECT pg_catalog.setval('secuencia_id_persona', 8, true);
+
+
+--
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: basedatosiglesia; Owner: basedatosiglesia
+--
+
+COPY usuarios (login, password, habilitado, id_usuario) FROM stdin;
+admin	password	t	1
+\.
+
+
+--
+-- Name: id_persona; Type: CONSTRAINT; Schema: basedatosiglesia; Owner: basedatosiglesia; Tablespace: 
+--
+
+ALTER TABLE ONLY personas
+    ADD CONSTRAINT id_persona PRIMARY KEY (id_persona);
+
+
+--
+-- Name: usuarios_pkey; Type: CONSTRAINT; Schema: basedatosiglesia; Owner: basedatosiglesia; Tablespace: 
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuarios_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- Name: usuarios_fkey; Type: FK CONSTRAINT; Schema: basedatosiglesia; Owner: basedatosiglesia
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuarios_fkey FOREIGN KEY (id_usuario) REFERENCES personas(id_persona) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
