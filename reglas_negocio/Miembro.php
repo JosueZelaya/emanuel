@@ -57,17 +57,24 @@ class Miembro extends Persona{
 		
 	}
 	
-	public function guardar(){
-		$consulta = "UPDATE personas SET nombres='".$this->getNombres()."',"
-                    . "apellidos='".$this->getApellidos()."',"                    
-                    . "correo='".$this->getCorreo()."',"
-                    . "telefono='".$this->getTelefono()."',"
-                    . "direccion='".$this->getDireccion()."',"
-                    . "fecha_nacimiento='".$this->getFechaNacimiento()."',"
-                    . "fecha_conversion='".$this->getFechaConversion()."',"
-                    . "fecha_bautismo='".$this->getFechaBautismo()."'"
-                    . " WHERE id_persona='".$this->getId()."'";            
-                conexion::consulta2($consulta);
+	public function guardar(){            
+            $consulta = "UPDATE personas SET nombres='".$this->getNombres()."',"
+                . "apellidos='".$this->getApellidos()."',"                    
+                . "correo='".$this->getCorreo()."',"
+                . "telefono='".$this->getTelefono()."',"
+                . "direccion='".$this->getDireccion()."'";
+            
+                if($this->getFechaNacimiento()!=""){
+                    $consulta = $consulta.",fecha_nacimiento='".$this->getFechaNacimiento()."'";
+                }
+                if($this->getFechaConversion()!=""){
+                    $consulta = $consulta.",fecha_conversion='".$this->getFechaConversion()."'";
+                }
+                if($this->getFechaBautismo()!=""){
+                    $consulta = $consulta.",fecha_bautismo='".$this->getFechaBautismo()."'";
+                }
+                $consulta = $consulta." WHERE id_persona='".$this->getId()."'";            
+            conexion::consulta2($consulta);
 	}
 	
 //	public function destruir(){

@@ -44,21 +44,21 @@ if (ManejadorSesion::comprobar_sesion() == true) : ?>
                 <label for="nacimiento" class="col-lg-2 control-label">Fecha de Nacimiento</label>
                 <div class="col-lg-4">
                     <!--<input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Col El Buen Vecino"/>-->                    
-                        <input id="datepicker" name="nacimiento" data-value="01/01/2014" class="datepicker form-control span2" size="16" type="text" readonly="">                        
+                        <input id="nacimiento" name="nacimiento" data-value="" class="datepicker form-control span2" size="16" type="text" readonly="">                        
                 </div>
             </div>
             <div class="form-group">
                 <label for="conversion" class="col-lg-2 control-label">Fecha de Conversion</label>
                 <div class="col-lg-4">
                     <!--<input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Col El Buen Vecino"/>-->                    
-                        <input id="datepicker" name="conversion" data-value="" class="datepicker form-control span2" size="16" type="text" readonly="">                        
+                        <input id="conversion" name="conversion" data-value="" class="datepicker form-control span2" size="16" type="text" readonly="">                        
                 </div>
             </div>
             <div class="form-group">
                 <label for="bautismo" class="col-lg-2 control-label">Fecha de Bautismo</label>
                 <div class="col-lg-4">
                     <!--<input type="text" id="nacimiento" name="nacimiento" class="form-control" placeholder="Col El Buen Vecino"/>-->                    
-                        <input id="datepicker" name="bautismo" data-value="" class="datepicker form-control span2" size="16" type="text" readonly="">                        
+                        <input id="bautismo" name="bautismo" data-value="" class="datepicker form-control span2" size="16" type="text" readonly="">                        
                 </div>
             </div>
         </div>

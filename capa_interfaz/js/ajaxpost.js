@@ -52,6 +52,12 @@ $(document).on("submit","#formularioAgregarPersona",function(){
     event.preventDefault();
 });
 
+$(document).on("reset","#formularioAgregarPersona",function(){   
+   $("#nacimiento_submit").val("");
+   $("#conversion_submit").val("");
+   $("#bautismo_submit").val("");   
+});
+
 // bind to the submit event of our form
 $("#autenticarse").submit(function(event){
     // abort any pending request

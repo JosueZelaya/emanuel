@@ -9,6 +9,6 @@ jQuery.extend( jQuery.fn.pickadate.defaults, {
     clear: 'Cancelar',
     firstDay: 1,
     format: 'dddd d !de mmmm !de yyyy',
-    formatSubmit: 'dd/mm/yyyy'
+    formatSubmit: 'dd-mm-yyyy'
 //    formatSubmit: 'yyyy/mm/dd'
 });

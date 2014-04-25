@@ -8,7 +8,23 @@ if (ManejadorSesion::comprobar_sesion() == true){
     if (isset($_GET)){
         if(isset($_GET['term'])){
             $buscarComo = $_GET['term'];        
-            echo json_encode(ManejadorPersonal::buscarUsuario($buscarComo,"nombre_completo"));                
+//            echo json_encode(ManejadorPersonal::buscarUsuario($buscarComo,"nombre_completo"));
+             $miembros = ManejadorPersonal::buscarUsuario($buscarComo,"nombre_completo");
+             $datos;
+             for ($index = 0; $index < count($miembros); $index++) {
+                 $datos[] = array("value"=> $miembros[$index]->getNombres()." ".$miembros[$index]->getApellidos(),
+                 "id"=>$miembros[$index]->getId(),
+                 "nombres" => $miembros[$index]->getNombres(),
+                 "apellidos" => $miembros[$index]->getApellidos(),
+                 "correo" => $miembros[$index]->getCorreo(),
+                 "telefono"=>$miembros[$index]->getTelefono(),
+                 "direccion" => $miembros[$index]->getDireccion(),
+                 "fecha_nacimiento"=>$miembros[$index]->getFechaNacimiento(),
+                 "fecha_conversion"=>$miembros[$index]->getFechaConversion(),
+                 "fecha_bautismo"=>$miembros[$index]->getFechaBautismo());
+             }
+             
+             echo json_encode($datos);
         }
         if(isset($_GET['mes'])){
             $buscarComo = $_GET['mes'];

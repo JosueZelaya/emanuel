@@ -17,7 +17,7 @@ $(document).ready(function() {
     
    $('.fechaEditable').editable({
 //       format: 'dd/mm/yyyy',
-       formatSubmit: 'mm-dd-yyyy',
+       formatSubmit: 'dd-mm-yyyy',
        viewformat: 'dd-mm-yyyy',       
         datepicker: {
              weekStart: 1            

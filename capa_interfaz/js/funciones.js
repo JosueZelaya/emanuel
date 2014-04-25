@@ -35,7 +35,7 @@ $(function (){
 
                     );                                                            
                 });
-                $('#mostrarUsuarios').slideDown('fast');
+                $('#mostrarUsuarios').slideDown('fast');                
             }
     });
     
@@ -173,7 +173,7 @@ $(function (){
                     ).trigger('footable_redraw');                    
                 });
                 $('#mostrarUsuarios').slideDown('fast');
-                $('.pagination').html("");
+                $('.pagination').html("");                
             }                        
         });
     });
