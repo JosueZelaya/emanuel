@@ -10,11 +10,11 @@
 //
 //});
 
-$(document).on("submit","#formularioAgregarPersona",function(){
+$(document).on("click","#add",function(){    
     // abort any pending request
     
     // setup some local variables
-    var $form = $(this);
+    var $form = $("#formularioAgregarPersona");
     // let's select and cache all the fields
     var $inputs = $form.find("input, select, button, textarea");
     // serialize the data in the form
@@ -31,15 +31,15 @@ $(document).on("submit","#formularioAgregarPersona",function(){
         url: "aPersona.php",        
         data: serializedData,
         success: function(datos){
-            datos = jQuery.parseJSON(datos);
+            datos = jQuery.parseJSON(datos);            
             if(datos==="¡Persona Agregada!"){
                 $("#resultado").html("<font color='green'>"+datos+"</font>");
             }else{
                 $("#resultado").html("<font color='red'>"+datos+"</font>");
             }            
         },
-        error:function(){
-            $("#resultado").html('Los datos no se pudieron enviar');
+        error:function(err){                                  
+            $("#resultado").html("Los datos no se pudieron enviar!");
         }
     });
 

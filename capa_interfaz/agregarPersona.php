@@ -6,8 +6,7 @@ if (ManejadorSesion::comprobar_sesion() == true) : ?>
 
 <div class="panel panel-default col-sm-11">
     <form class="form-horizontal" id="formularioAgregarPersona">
-        <div class="modal-header">
-            <!--<h4>Agregar Persona</h4>-->
+        <div class="modal-header">            
             </div>
         <div class="modal-body">                    
             <div class="form-group">
@@ -63,12 +62,9 @@ if (ManejadorSesion::comprobar_sesion() == true) : ?>
             </div>
         </div>
         <div class="modal-footer"> 
-            <div id="resultado" class="resultado"></div>
-            <!--<button class="btn btn-primary" type="submit" name="submit">Entrar</button>-->
-            <input type="submit" name="submit" class="btn btn-primary" value="Agregar" tabindex="4">
-            <input type="reset" name="reset" class="btn btn-default" value="Borrar" tabindex="4">
-            <!--<a class="btn btn-default" data-dismiss="modal">Cancelar</a>-->                    
-            <!--<a class="btn btn-primary">Entrar</a>-->
+            <div id="resultado" class="resultado"></div>            
+            <input type="button" name="add" id="add" class="btn btn-primary" value="Agregar" tabindex="4">
+            <input type="reset" name="reset" class="btn btn-default" value="Borrar" tabindex="4">            
         </div>
     </form>
 </div>

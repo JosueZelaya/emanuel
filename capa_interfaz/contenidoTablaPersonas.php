@@ -36,8 +36,8 @@ if($tipoResultado=='modificarPersonas'){
 }else if($tipoResultado=='eliminarPersonas'){
     for($index = 0;$index < count($usuario); $index++){
         echo "<tr>".
-             "<td class='footable-first-column text-left'><span class='footable-toogle'></span>".$usuario[$index]->getNombres()."</td>".   
-             "<td class='text-left'>".$usuario[$index]->getApellidos()."</td>".
+             "<td id='nombre".$usuario[$index]->getId()."'class='footable-first-column text-left'><span class='footable-toogle'></span>".$usuario[$index]->getNombres()."</td>".   
+             "<td id='apellido".$usuario[$index]->getId()."' class='text-left'>".$usuario[$index]->getApellidos()."</td>".
              "<td class='text-left'>".$usuario[$index]->getFechaNacimiento()."</td>".                   
              "<td class='text-left'>".$usuario[$index]->getFechaConversion()."</td>".
              "<td class='text-left'>".$usuario[$index]->getFechaBautismo()."</td>".   

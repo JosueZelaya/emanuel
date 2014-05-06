@@ -53,4 +53,5 @@
     </div>
 
 <script src="bootstrap/FooTable-2/js/footable.js?v=2-0-1" type="text/javascript"></script>
-<script type="text/javascript" src="js/funciones.js"></script> 
+<script type="text/javascript" src="js/funciones.js"></script>
+<script type="text/javascript" src="js/bootbox.min.js"></script>

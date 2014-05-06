@@ -48,29 +48,32 @@ $(function (){
             tablet: 768,
             laptop: 1024
         }
-    }).on('click','.row-delete',function(e){
-          e.preventDefault();
+    }).on('click','.row-delete',function(e){         
+         e.preventDefault();
         //get the footable object
         var footable = $('table').data('footable');
-
         //get the row we are wanting to delete
         var row = $(this).parents('tr:first');
-
         id = $(this).attr('id');        
         var dataString = 'id='+id;                  
         
-        $.ajax({
-            type: "GET",
-            url: "ePersona.php",
-            data: dataString,
-            success: function(data) {                                
-                
-            }            
-        });
+        var mensaje = "<font color='red'>¿Realmente desea borrar los datos de: "+$('#nombre'+id).html()+" "+$('#apellido'+id).html()+"?</font>\n\
+        <br/>Los datos borrados ya no podran recuperarse";
         
+        bootbox.confirm(mensaje, function(resultado) {
+            if(resultado===true){                
+                $.ajax({
+                    type: "GET",
+                    url: "ePersona.php",
+                    data: dataString,
+                    success: function(data) {                                
 
-        //delete the row
-        footable.removeRow(row);
+                    }            
+                });
+                //delete the row
+                footable.removeRow(row);
+            }            
+         });                   
     });
     
     //$('table').footable().on('click', '.row-delete', function(e) {
@@ -213,8 +216,8 @@ $(function (){
                 $('#mostrarUsuarios').slideUp('fast',function(){
                    $('#mostrarUsuarios').html(                    
                    "<tr>"+
-                    "<td data-toggle='true' class='footable-first-column'><span class='footable-toogle'></span>"+ui.item.nombres+"</td>"+
-                    "<td>"+ui.item.apellidos+"</td>"+
+                    "<td id='nombre"+ui.item.id+"' data-toggle='true' class='footable-first-column'><span class='footable-toogle'></span>"+ui.item.nombres+"</td>"+
+                    "<td id='apellido"+ui.item.id+"'>"+ui.item.apellidos+"</td>"+
                     "<td data-hide='tiny,phone,medium' class=''>"+ui.item.fecha_nacimiento+"</td>"+
                     "<td data-hide='tiny,phone,medium,tablet' class=''>"+ui.item.fecha_conversion+"</td>"+ 
                     "<td data-hide='tiny,phone,medium,tablet' class=''>"+ui.item.fecha_bautismo+"</td>"+ 
